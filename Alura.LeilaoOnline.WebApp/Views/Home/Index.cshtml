@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewData["Title"] = "Leilões Online";
+}
+
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col s12">
+                <h4>Próximos Leilões</h4>
+            </div>
+            <div class="col s12 m3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="~/images/painting1.jpg" width="300px">
+                        <span class="card-title">Réplica de Pintura</span>
+                    </div>
+                    <div class="card-content">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quae odio amet nisi facere tempore.
+                        </p>
+                    </div>
+                    <div class="card-action center">
+                        <a asp-action="Detalhes">Detalhes</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="~/images/carro1.jpg" width="300px">
+                        <span class="card-title">Buick Antigo</span>
+                    </div>
+                    <div class="card-content">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quae odio amet nisi facere tempore.
+                        </p>
+                    </div>
+                    <div class="card-action center">
+                        <a asp-action="DetalhesPregaoAndamento">Detalhes</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="~/images/instrumento1.jpg" width="300px">
+                        <span class="card-title">Guitarra Special</span>
+                    </div>
+                    <div class="card-content">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quae odio amet nisi facere tempore.
+                        </p>
+                    </div>
+                    <div class="card-action center">
+                        <a href="#">Detalhes</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="~/images/instrumento2.jpg" width="300px">
+                        <span class="card-title">Piano Clássico</span>
+                    </div>
+                    <div class="card-content">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quae odio amet nisi facere tempore.
+                        </p>
+                    </div>
+                    <div class="card-action center">
+                        <a href="#">Fazer Oferta</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="parallax-container valign-wrapper">
+    <div class="parallax">
+        <img src="https://picsum.photos/2000/800?image=78">
+    </div>
+</div>
+
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col s12">
+                <h4 class="center">Navegue pelas categorias de Leilão</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-content center-align">
+                        <h2 class="icon-block brown-text"><i class="material-icons">directions_car</i></h2>
+                        <h5>Carros e Caminhões</h5>
+                        <p class="light">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, laborum incidunt voluptatum accusantium repellendus numquam.
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        <a asp-controller="Leiloes" asp-action="Categoria" asp-route-id="automoveis" >Descobrir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-content center-align">
+                        <h2 class="icon-block brown-text"><i class="material-icons">palette</i></h2>
+                        <h5>Pinturas e Esculturas</h5>
+                        <p class="light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, laborum incidunt voluptatum accusantium repellendus numquam.</p>
+                    </div>
+                    <div class="card-action">
+                        <a asp-controller="Leiloes" asp-action="categoria" asp-route-id="pintura">Descobrir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-content center-align">
+                        <h2 class="icon-block brown-text"><i class="material-icons">grade</i></h2>
+                        <h5>Itens de Colecionador</h5>
+                        <p class="light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, laborum incidunt voluptatum accusantium repellendus numquam.</p>
+                    </div>
+                    <div class="card-action">
+                        <a asp-controller="Leiloes" asp-action="Categoria" asp-route-id="colecionador">Descobrir</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

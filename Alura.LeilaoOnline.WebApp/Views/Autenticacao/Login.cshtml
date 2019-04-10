@@ -1,0 +1,58 @@
+﻿@model Alura.LeilaoOnline.WebApp.Models.LoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"]</title>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        form {
+            width: 300px;
+        }
+    </style>
+</head>
+<body class="grey lighten-4">
+    <form class="card" asp-action="Login" asp-controller="Autenticacao">
+        <div class="card-content">
+            <span class="card-title">
+                <i class="material-icons left">person</i>
+                Login
+            </span>
+            <div class="input-field col s6">
+                <input asp-for="Login" class="validate" />
+                <label asp-for="Login"></label>
+            </div>
+            <!--div.input-field login-->
+            <div class="input-field col s6">
+                <input asp-for="Password" class="validate" />
+                <label asp-for="Password"></label>
+            </div>
+            <!--div.input-field password-->
+        </div>
+        <!--div.card-content-->
+        <div class="card-action">
+            <button class="btn waves-effect waves-light z-depth-0">Login</button>
+        </div>
+        <!--div.card-action-->
+    </form>
+    <!--div.card-->
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="~/js/materialize.js"></script>
+    <script src="~/js/init.js"></script>
+</body>
+</html>
