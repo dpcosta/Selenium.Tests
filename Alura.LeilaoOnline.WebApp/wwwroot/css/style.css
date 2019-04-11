@@ -97,3 +97,7 @@ footer.page-footer {
 #modalConfirmaDelLeilao form {
     display: inline;
 }
+
+.card-action .pagination a {
+    margin-right: 0 !important;
+}

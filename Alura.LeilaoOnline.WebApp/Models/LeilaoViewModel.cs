@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System;
+using Microsoft.AspNetCore.Http;
 
 namespace Alura.LeilaoOnline.WebApp.Models
 {
@@ -10,5 +11,7 @@ namespace Alura.LeilaoOnline.WebApp.Models
         public IFormFile ArquivoImagem { get; set; }
         public double ValorInicial { get; set; }
         public string Estado { get; set; }
+        public DateTime InicioPregao { get; set; }
+        public DateTime TerminoPregao { get; set; }
     }
 }

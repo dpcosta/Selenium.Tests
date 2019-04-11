@@ -18,7 +18,11 @@ function readPosterURL(input) {
 
         $('.sidenav').sidenav();
         $('.parallax').parallax();
-        $(".dropdown-trigger").dropdown();
+        $(".dropdown-trigger").dropdown({
+            hover: true,
+            constrainWidth: false,
+            coverTrigger: false
+        });
         $('.carousel.carousel-slider').carousel({
             fullWidth: true,
             indicators: true
