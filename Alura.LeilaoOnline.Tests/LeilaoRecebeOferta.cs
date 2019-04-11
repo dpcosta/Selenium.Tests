@@ -12,7 +12,7 @@ namespace Alura.LeilaoOnline.Tests
             //Arranje - cenário
             var modalidade = new MaiorValor();
             var leilao = new Leilao("Van Gogh", modalidade);
-            var fulano = new Interessada("Fulano", leilao);
+            var fulano = new Interessada("Fulano");
             leilao.IniciaPregao();
             leilao.RecebeLance(fulano, 800);
             
@@ -34,8 +34,8 @@ namespace Alura.LeilaoOnline.Tests
             //Arranje - cenário
             var modalidade = new MaiorValor();
             var leilao = new Leilao("Van Gogh", modalidade);
-            var fulano = new Interessada("Fulano", leilao);
-            var maria = new Interessada("Maria", leilao);
+            var fulano = new Interessada("Fulano");
+            var maria = new Interessada("Maria");
             leilao.IniciaPregao();
             for (int i = 0; i < ofertas.Length; i++)
             {

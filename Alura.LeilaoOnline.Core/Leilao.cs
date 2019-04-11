@@ -26,7 +26,7 @@ namespace Alura.LeilaoOnline.Core
         public DateTime InicioPregao { get; set; }
         public DateTime TerminoPregao { get; set; }
         public EstadoLeilao Estado { get; private set; }
-        public IEnumerable<Lance> Lances => _lances;
+        public IEnumerable<Lance> Lances => _lances; //EF deve reclamar aqui
         public Lance Ganhador { get; private set; }
 
         public Leilao(string titulo, IModalidadeAvaliacao avaliador)

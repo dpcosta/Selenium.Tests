@@ -1,14 +1,15 @@
-﻿namespace Alura.LeilaoOnline.Core
+﻿using System.Collections.Generic;
+
+namespace Alura.LeilaoOnline.Core
 {
     public class Interessada
     {
         public string Nome { get; }
-        public Leilao Leilao { get; }
+        public IEnumerable<Lance> Lances { get; set; }
 
-        public Interessada(string nome, Leilao leilao)
+        public Interessada(string nome)
         {
             Nome = nome;
-            Leilao = leilao;
         }
     }
 }
