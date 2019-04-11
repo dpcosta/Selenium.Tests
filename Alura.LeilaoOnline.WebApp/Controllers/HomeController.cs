@@ -18,7 +18,7 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
                 Descricao = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos officia repellat sed repudiandae deleniti aperiam et atque. Blanditiis, deserunt natus.",
                 Imagem = "/images/painting1.jpg",
                 ValorInicial = 1200.00,
-                Estado = "Pregão não iniciado"
+                Estado = Core.EstadoLeilao.LeilaoAntesDoPregao
             };
             return View(leilao);
         }
@@ -31,7 +31,7 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
                 Descricao = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos officia repellat sed repudiandae deleniti aperiam et atque. Blanditiis, deserunt natus.",
                 Imagem = "/images/instrumento2.jpg",
                 ValorInicial = 15200.00,
-                Estado = "Pregão em andamento"
+                Estado = Core.EstadoLeilao.LeilaoEmAndamento
             };
             return View("Detalhes", leilao);
         }

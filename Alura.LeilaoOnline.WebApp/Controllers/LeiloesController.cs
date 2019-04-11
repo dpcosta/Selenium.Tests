@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Alura.LeilaoOnline.WebApp.Models;
+using System.Collections.Generic;
 
 namespace Alura.LeilaoOnline.WebApp.Controllers
 {
@@ -7,13 +8,14 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
     {
         public IActionResult Index()
         {
-            //var leiloes = _dao.Todos.ToPagina();
+            //var leiloes = _repo.Todos.ToPagina();
             return View();
         }
 
         public IActionResult Categoria(string id)
         {
             ViewData["categoria"] = id;
+            //var leiloes = _repo.Todos.Where(l => l.Categoria.Contains(id));
             return View();
         }
 
@@ -29,7 +31,7 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
             if (ModelState.IsValid)
             {
                 //arquivo com a imagem
-                //_dao.Incluir(model);
+                //_repo.Incluir(model);
                 return RedirectToAction("Index");
             }
             return View("Novo", model);
@@ -38,15 +40,24 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
         [HttpPost]
         public IActionResult Remove(int id)
         {
-            //var leilao = _dao.BuscarPorId(id);
-            return RedirectToAction("Index");
+            //var leilao = _repo.BuscarPorId(id);
+            var leilao = new LeilaoViewModel();
+            if(leilao != null)
+            {
+                //_repo.Excluir(leilao);
+                return RedirectToAction("Index");
+            }
+            return NotFound();
         }
 
         //[HttpGet]
         //public IActionResult Visualiza(int id)
         //{
-        //    var leilao 
-        //    return View(leilao);
+        //    var leilao = _repo.BuscarPorId(id);
+        //    if(leilao != null) {
+        //      return View(leilao);
+        //    }
+        //    return NotFound();
         //}
     }
 }

@@ -17,14 +17,21 @@ namespace Alura.LeilaoOnline.Core
         private IList<Lance> _lances;
         private IModalidadeAvaliacao _avaliador;
 
-        public IEnumerable<Lance> Lances => _lances;
-        public string Peca { get; }
-        public Lance Ganhador { get; private set; }
+        public int Id { get; set; }
+        public string Titulo { get; }
+        public string Descricao { get; set; }
+        public string Categoria { get; set; }
+        public string Imagem { get; set; }
+        public double ValorInicial { get; set; }
+        public DateTime InicioPregao { get; set; }
+        public DateTime TerminoPregao { get; set; }
         public EstadoLeilao Estado { get; private set; }
+        public IEnumerable<Lance> Lances => _lances;
+        public Lance Ganhador { get; private set; }
 
-        public Leilao(string peca, IModalidadeAvaliacao avaliador)
+        public Leilao(string titulo, IModalidadeAvaliacao avaliador)
         {
-            Peca = peca;
+            Titulo = titulo;
             _lances = new List<Lance>();
             Estado = EstadoLeilao.LeilaoAntesDoPregao;
             _avaliador = avaliador;
