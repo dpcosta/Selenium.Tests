@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<Alura.LeilaoOnline.WebApp.Models.LeilaoViewModel>
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -48,16 +49,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Réplica de pintura</td>
-                                <td>1.000,00</td>
-                                <td>Arte e Pintura</td>
-                                <td>Não iniciado</td>
-                                <td>
-                                    <a class="modal-trigger black-text" href="#modalConfirmaDelLeilao"><i class="material-icons">close</i></a>
-                                </td>
-                            </tr>
-                            <tr>
+                            @foreach (var leilao in Model)
+                            {
+                                <tr>
+                                    <td>@leilao.Titulo</td>
+                                    <td>@leilao.ValorInicial</td>
+                                    <td>@leilao.Categoria</td>
+                                    <td>@leilao.Estado</td>
+                                    <td>
+                                        <a class="modal-trigger black-text" href="#modalConfirmaDelLeilao"><i class="material-icons">close</i></a>
+                                    </td>
+                                </tr>
+                            }
+                            @*<tr>
                                 <td>Réplica de pintura</td>
                                 <td>1.000,00</td>
                                 <td>Arte e Pintura</td>
@@ -107,7 +111,7 @@
                                 <td>Arte e Pintura</td>
                                 <td>Não iniciado</td>
                                 <td></td>
-                            </tr>
+                            </tr>*@
                         </tbody>
                     </table>
                 </div>

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Alura.LeilaoOnline.Core
 {
@@ -14,25 +15,34 @@ namespace Alura.LeilaoOnline.Core
     public class Leilao
     {
         private Interessada _ultimoCliente;
-        private IList<Lance> _lances;
         private IModalidadeAvaliacao _avaliador;
 
         public int Id { get; set; }
-        public string Titulo { get; }
+        [Required]
+        public string Titulo { get; set; }
+        [Required]
         public string Descricao { get; set; }
+        [Required]
         public string Categoria { get; set; }
+        [Required]
         public string Imagem { get; set; }
         public double ValorInicial { get; set; }
         public DateTime InicioPregao { get; set; }
         public DateTime TerminoPregao { get; set; }
         public EstadoLeilao Estado { get; private set; }
-        public IEnumerable<Lance> Lances => _lances; //EF deve reclamar aqui
+        public IList<Lance> Lances { get; private set; }
         public Lance Ganhador { get; private set; }
+
+        //para uso do EF Core
+        private Leilao()
+        {
+
+        }
 
         public Leilao(string titulo, IModalidadeAvaliacao avaliador)
         {
             Titulo = titulo;
-            _lances = new List<Lance>();
+            Lances = new List<Lance>();
             Estado = EstadoLeilao.LeilaoAntesDoPregao;
             _avaliador = avaliador;
         }
@@ -47,7 +57,7 @@ namespace Alura.LeilaoOnline.Core
         {
             if (NovoLanceEhAceito(cliente, valor))
             {
-                _lances.Add(new Lance(cliente, valor));
+                Lances.Add(new Lance(cliente, valor));
                 _ultimoCliente = cliente;
             }
         }

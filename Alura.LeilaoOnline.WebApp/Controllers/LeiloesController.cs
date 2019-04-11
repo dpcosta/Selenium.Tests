@@ -1,15 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Alura.LeilaoOnline.Core;
 using Alura.LeilaoOnline.WebApp.Models;
+using Alura.LeilaoOnline.WebApp.Dados;
 using System.Collections.Generic;
+using System.Linq;
+using Alura.LeilaoOnline.WebApp.Extensions;
 
 namespace Alura.LeilaoOnline.WebApp.Controllers
 {
     public class LeiloesController : Controller
     {
+        private readonly IRepositorio<Leilao> _repo;
+
+        public LeiloesController(IRepositorio<Leilao> repositorio)
+        {
+            _repo = repositorio;
+        }
+
         public IActionResult Index()
         {
-            //var leiloes = _repo.Todos.ToPagina();
-            return View();
+            var leiloes = _repo.Todos.Select(l => l.ToViewModel());
+            return View(leiloes);
         }
 
         public IActionResult Categoria(string id)
