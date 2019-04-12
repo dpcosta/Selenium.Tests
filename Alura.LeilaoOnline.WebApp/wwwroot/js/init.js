@@ -33,9 +33,11 @@ function readPosterURL(input) {
             "format": "dd/mm/yyyy",
             autoClose: true
         });
-        $('#poster').change(function () {
+        $('#ArquivoImagem').change(function () {
             readPosterURL(this);
         });
+        $('.tooltiped').tooltip();
+        $('input[type=text], textarea').characterCounter();
 
   }); // end of document ready
 })(jQuery); // end of jQuery name space

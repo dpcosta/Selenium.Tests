@@ -101,3 +101,11 @@ footer.page-footer {
 .card-action .pagination a {
     margin-right: 0 !important;
 }
+
+.section-prox-leiloes .card-image img {
+    height: 180px !important;
+}
+
+.msg-erro {
+    color: red !important;
+}

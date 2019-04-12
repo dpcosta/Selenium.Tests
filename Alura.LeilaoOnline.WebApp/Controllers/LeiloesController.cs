@@ -5,29 +5,43 @@ using Alura.LeilaoOnline.WebApp.Dados;
 using System.Collections.Generic;
 using System.Linq;
 using Alura.LeilaoOnline.WebApp.Extensions;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Alura.LeilaoOnline.WebApp.Controllers
 {
     public class LeiloesController : Controller
     {
         private readonly IRepositorio<Leilao> _repo;
+        private readonly IHostingEnvironment _env;
 
-        public LeiloesController(IRepositorio<Leilao> repositorio)
+        private string TentaGravarImagemDestaqueERetornaSeuNome(IFormFile upload)
+        {
+            if (upload != null)
+            {
+                var nomeArquivoServidor = Path.Combine(
+                    _env.WebRootPath,
+                    "images",
+                    upload.FileName);
+                using (var stream = new FileStream(nomeArquivoServidor, FileMode.OpenOrCreate))
+                {
+                    upload.CopyTo(stream);
+                }
+            }
+            return $"/images/{upload.FileName}";
+        }
+
+        public LeiloesController(IRepositorio<Leilao> repositorio, IHostingEnvironment environment)
         {
             _repo = repositorio;
+            _env = environment;
         }
 
         public IActionResult Index()
         {
             var leiloes = _repo.Todos.Select(l => l.ToViewModel());
             return View(leiloes);
-        }
-
-        public IActionResult Categoria(string id)
-        {
-            ViewData["categoria"] = id;
-            //var leiloes = _repo.Todos.Where(l => l.Categoria.Contains(id));
-            return View();
         }
 
         [HttpGet]
@@ -41,8 +55,10 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                //arquivo com a imagem
-                //_repo.Incluir(model);
+                //gravar arquivo com a imagem definida
+                model.Imagem = this.TentaGravarImagemDestaqueERetornaSeuNome(model.ArquivoImagem);
+                var novoLeilao = model.ToModel();
+                _repo.Incluir(novoLeilao);
                 return RedirectToAction("Index");
             }
             return View("Novo", model);

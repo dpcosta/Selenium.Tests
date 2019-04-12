@@ -24,5 +24,20 @@ namespace Alura.LeilaoOnline.WebApp.Extensions
                 Estado = leilao.Estado
             };
         }
+
+        public static Leilao ToModel(this LeilaoViewModel leilao)
+        {
+            return new Leilao(leilao.Titulo, null)
+            {
+                Id = leilao.Id,
+                Titulo = leilao.Titulo,
+                Descricao = leilao.Descricao,
+                Categoria = leilao.Categoria,
+                Imagem = leilao.Imagem,
+                InicioPregao = leilao.InicioPregao,
+                TerminoPregao = leilao.TerminoPregao,
+                ValorInicial = leilao.ValorInicial
+            };
+        }
     }
 }

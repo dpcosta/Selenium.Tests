@@ -3,8 +3,8 @@
     ViewData["Title"] = "Novo Leilão";
 }
 
-<form class="container" asp-action="Novo" asp-controller="Leiloes">
-    <h4 class="center-align">Inclusão de Leilão</h4>
+<form class="container" asp-action="Novo" asp-controller="Leiloes" enctype="multipart/form-data">
+    <h4>Inclusão de Leilão</h4>
     <div class="row">
         <div class="col s12 m8">
             <div class="card">
@@ -13,26 +13,30 @@
                     <div class="input-field">
                         <input asp-for="Titulo" class="validate" />
                         <label asp-for="Titulo"></label>
+                        <span class="helper-text msg-erro" asp-validation-for="Titulo"></span>
                     </div>
                     <!--div.input-field titulo-->
                     <div class="input-field">
-                        <textarea asp-for="Descricao" class="validate materialize-textarea"></textarea>
+                        <textarea asp-for="Descricao" class="validate materialize-textarea" data-length="120"></textarea>
                         <label asp-for="Descricao"></label>
+                        <span class="helper-text msg-erro" asp-validation-for="Descricao"></span>
                     </div>
                     <!--div.input-field descricao-->
                     <div class="row">
                         <div class="input-field col s6">
-                            <select>
-                                <option value="1">Automóveis</option>
-                                <option value="2">Item de Colecionador</option>
-                                <option value="3">Arte e Pintura</option>
+                            <select asp-for="Categoria">
+                                <option value="Automóveis">Automóveis</option>
+                                <option value="Item de Colecionador">Item de Colecionador</option>
+                                <option value="Arte e Pintura">Arte e Pintura</option>
                             </select>
-                            <label>Categoria</label>
+                            <label asp-for="Categoria"></label>
+                            <span class="helper-text msg-erro" asp-validation-for="Categoria"></span>
                         </div>
                         <!--div.input-field categoria-->
                         <div class="input-field col s6">
-                            <input id="valorInicial" type="number" class="validate">
-                            <label for="valorInicial">Valor Inicial do Leilão</label>
+                            <input asp-for="ValorInicial" class="validate">
+                            <label asp-for="ValorInicial"></label>
+                            <span class="helper-text msg-erro" asp-validation-for="ValorInicial"></span>
                         </div>
                         <!--div.input-field valorInicial-->
                     </div>
@@ -52,13 +56,12 @@
                     <img id="imgPoster" class="responsive-img" src="~/images/poster-vazio.png" />
                     <a class="btn-floating halfway-fab waves-effect waves-light">
                         <i class="material-icons">mode_edit</i>
-                        <input id="poster" type="file">
+                        <input asp-for="ArquivoImagem">
                     </a>
                 </div>
                 <!--div.card-image-->
                 <div class="card-content">
-                    Nenhuma imagem selecionada.
-                    <!--div.input-field file-->
+                    <span class="msg-erro" asp-validation-for="ArquivoImagem">Nenhuma imagem definida.</span>
                 </div>
                 <!--div.card-content-->
             </div>
@@ -71,12 +74,14 @@
                     <span class="card-title">Pregão</span>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="inicioPregao" type="text" class="validate datepicker">
-                            <label for="inicioPregao">Início Pregão</label>
+                            <input type="text" asp-for="InicioPregao" class="validate datepicker">
+                            <label asp-for="InicioPregao"></label>
+                            <span class="helper-text msg-erro" asp-validation-for="InicioPregao"></span>
                         </div>
                         <div class="input-field col s6">
-                            <input id="terminoPregao" type="text" class="validate datepicker">
-                            <label for="terminoPregao">Término Pregão</label>
+                            <input type="text" asp-for="TerminoPregao" class="validate datepicker">
+                            <label asp-for="TerminoPregao"></label>
+                            <span class="helper-text msg-erro" asp-validation-for="TerminoPregao"></span>
                         </div>
                     </div>
                 </div>
