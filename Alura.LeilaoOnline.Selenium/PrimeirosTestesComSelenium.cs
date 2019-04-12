@@ -12,13 +12,11 @@ namespace Alura.LeilaoOnline.Selenium
 {
     public class PrimeirosTestesComSelenium
     {
-        private static readonly string nomePasta = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
         [Fact]
         public void TituloDeveConterCaelumAoNavegarParaHomeCaelum()
         {
             //arrange
-            IWebDriver driver = new ChromeDriver(nomePasta);
+            IWebDriver driver = new ChromeDriver(DirectoryHelper.PastaDoExecutavel);
             INavigation nav = driver.Navigate();
             //act
             nav.GoToUrl("https://www.caelum.com.br");
@@ -30,8 +28,8 @@ namespace Alura.LeilaoOnline.Selenium
         public static IEnumerable<object[]> CriaDriver =>
             new List<object[]>
             {
-                new object[] { new ChromeDriver(nomePasta) },
-                new object[] { new FirefoxDriver(nomePasta) },
+                new object[] { new ChromeDriver(DirectoryHelper.PastaDoExecutavel) },
+                new object[] { new FirefoxDriver(DirectoryHelper.PastaDoExecutavel) },
             };
 
         [Theory]
