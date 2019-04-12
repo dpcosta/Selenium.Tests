@@ -1,12 +1,19 @@
 ﻿@model IEnumerable<Alura.LeilaoOnline.WebApp.Models.LeilaoViewModel>
 @{
     ViewData["Title"] = "Leilões Online";
+    string categoria = ViewData["categoria"] as string;
 }
-
 
 <section class="section section-prox-leiloes">
     <div class="container">
-        <h4>Próximos Leilões</h4>
+        @if (string.IsNullOrWhiteSpace(categoria))
+        {
+            <h4>Próximos Leilões</h4>
+
+        } else
+        {
+            <h4>Leilões da categoria @categoria</h4>
+        }
         <div class="row">
             @foreach (var leilao in Model)
             {
