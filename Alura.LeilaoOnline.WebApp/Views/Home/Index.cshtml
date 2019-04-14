@@ -111,23 +111,23 @@
                 </div>
             </div>
             <div class="col s12 m6">
-                <form class="card-panel">
+                <form class="card-panel" asp-action="Registro" asp-controller="Usuarios">
                     <p>
                         Ut fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor.
                     </p>
                     <div class="input-field">
-                        <input type="email" id="email" />
-                        <label for="email">Email</label>
+                        <input type="email" id="Email" name="Email" />
+                        <label for="Email">Email</label>
                     </div>
                     <div class="input-field">
-                        <input type="password" name="password" id="password" />
-                        <label for="password">Senha</label>
+                        <input type="password" name="Password" id="Password" />
+                        <label for="Password">Senha</label>
                     </div>
                     <div class="input-field">
-                        <input type="password" name="confirmPassword" id="confirmPassword" />
-                        <label for="confirmPassword">Confirmação de Senha</label>
+                        <input type="password" name="ConfirmPassword" id="ConfirmPassword" />
+                        <label for="ConfirmPassword">Confirmação de Senha</label>
                     </div>
-                    <button class="btn waves-effect waves-light brown darken-3">Registrar</button>
+                    <button id="btnRegistro" class="btn waves-effect waves-light brown darken-3">Registrar</button>
                 </form>
             </div>
         </div>

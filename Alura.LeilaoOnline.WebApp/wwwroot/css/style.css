@@ -11,16 +11,12 @@
    color: rgb(65, 60, 60);
  }
  
-nav .brand-logo span:nth-child(1){
+.brand-logo span:nth-child(1){
   color: #444;
 }
 
-nav .brand-logo span:nth-child(2){
+.brand-logo span:nth-child(2){
   color: #26a69a;
-}
-
-p {
-  line-height: 2rem;
 }
 
 .sidenav-trigger {
@@ -106,6 +102,7 @@ footer.page-footer {
     color: red !important;
 }
 
-.section-registro i {
+.section-registro i,
+.section-agradecimento i{
     font-size: 2.8em !important;
 }

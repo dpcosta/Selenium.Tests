@@ -9,13 +9,26 @@ using Xunit;
 namespace Alura.LeilaoOnline.Selenium
 {
     [Trait("Tipo", "UI")]
-    public class HomeNaoLogada
+    public class HomeNaoLogada : IDisposable
     {
+
+        private readonly IWebDriver driver;
+
+        public HomeNaoLogada()
+        {
+            driver = new ChromeDriver(TestHelper.PastaDoExecutavel);
+        }
+
+        public void Dispose()
+        {
+            driver.Quit();
+        }
+
         [Fact]
         public void DeveTerOpcaoDeRegistroParaInteressadosNoLeilao()
         {
             //arrange
-            IWebDriver driver = new FirefoxDriver(TestHelper.PastaDoExecutavel);
+            //IWebDriver driver = new ChromeDriver(TestHelper.PastaDoExecutavel);
 
             //act
             driver.Navigate().GoToUrl(TestHelper.UrlDoSistema);
@@ -23,7 +36,7 @@ namespace Alura.LeilaoOnline.Selenium
             //assert
             Assert.Contains("section-registro", driver.PageSource);
 
-            driver.Quit();
         }
+
     }
 }
