@@ -10,13 +10,14 @@ using Xunit;
 
 namespace Alura.LeilaoOnline.Selenium
 {
+    [Trait("Tipo", "UI")]
     public class PrimeirosTestesComSelenium
     {
-        [Fact]
+        [Fact(Skip = "Usado apenas para introdução do Selenium")]
         public void TituloDeveConterCaelumAoNavegarParaHomeCaelum()
         {
             //arrange
-            IWebDriver driver = new ChromeDriver(DirectoryHelper.PastaDoExecutavel);
+            IWebDriver driver = new ChromeDriver(TestHelper.PastaDoExecutavel);
             INavigation nav = driver.Navigate();
             //act
             nav.GoToUrl("https://www.caelum.com.br");
@@ -28,15 +29,16 @@ namespace Alura.LeilaoOnline.Selenium
         public static IEnumerable<object[]> CriaDriver =>
             new List<object[]>
             {
-                new object[] { new ChromeDriver(DirectoryHelper.PastaDoExecutavel) },
-                new object[] { new FirefoxDriver(DirectoryHelper.PastaDoExecutavel) },
+                new object[] { new ChromeDriver(TestHelper.PastaDoExecutavel) },
+                new object[] { new FirefoxDriver(TestHelper.PastaDoExecutavel) },
             };
 
-        [Theory]
-        [MemberData(nameof(CriaDriver))]
-        public void PaginaDeveConterOpcaoDeContatoAoNavegarParaHomeCaelum(IWebDriver driver)
+        [Fact(Skip = "Usado apenas para introdução do Selenium")]
+        //[MemberData(nameof(CriaDriver))]
+        public void PaginaDeveConterOpcaoDeContatoAoNavegarParaHomeCaelum()
         {
             //arrange
+            IWebDriver driver = new ChromeDriver(TestHelper.PastaDoExecutavel);
             INavigation nav = driver.Navigate();
             //act
             nav.GoToUrl("https://www.caelum.com.br");

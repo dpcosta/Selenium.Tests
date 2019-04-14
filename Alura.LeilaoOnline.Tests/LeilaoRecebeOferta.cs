@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace Alura.LeilaoOnline.Tests
 {
+    [Trait("Tipo", "Unidade")]
     public class LeilaoRecebeOferta
     {
         [Fact]

@@ -3,6 +3,7 @@ using Xunit;
 
 namespace Alura.LeilaoOnline.Tests
 {
+    [Trait("Tipo", "Unidade")]
     public class LanceCtor
     {
         [Fact]

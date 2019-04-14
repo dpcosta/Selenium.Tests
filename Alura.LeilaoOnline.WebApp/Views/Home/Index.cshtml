@@ -10,7 +10,8 @@
         {
             <h4>Próximos Leilões</h4>
 
-        } else
+        }
+        else
         {
             <h4>Leilões da categoria @categoria</h4>
         }
@@ -22,10 +23,10 @@
                         <div class="card-image">
                             <img src="@leilao.Imagem" class="responsive-img">
                             <span class="card-title">@leilao.Titulo</span>
-                            
+
                         </div>
                         <div class="card-content">
-                            <p>@leilao.Descricao.Substring(0,150)</p>
+                            <p>@leilao.Descricao.Substring(0, 150)</p>
                         </div>
                         <div class="card-action">
                             <a asp-action="Detalhes" asp-route-id="@leilao.Id">Detalhes</a>
@@ -37,14 +38,9 @@
     </div>
 </section>
 
-<div class="parallax-container valign-wrapper">
-    <div class="parallax">
-        <img src="https://picsum.photos/2000/800?image=78">
-    </div>
-</div>
 
-<div class="container">
-    <div class="section">
+<section class="section section-categ-leiloes brown lighten-5">
+    <div class="container">
         <h4 class="center">Navegue pelas categorias de Leilão</h4>
         <div class="row">
             <div class="col s12 m4">
@@ -57,7 +53,7 @@
                         </p>
                     </div>
                     <div class="card-action">
-                        <a asp-controller="Home" asp-action="Categoria" asp-route-id="Automóveis" >Descobrir</a>
+                        <a asp-controller="Home" asp-action="Categoria" asp-route-id="Automóveis">Descobrir</a>
                     </div>
                 </div>
             </div>
@@ -88,6 +84,55 @@
             </div>
         </div>
     </div>
-</div>
+</section>
+<!--section-categ-leiloes-->
 
-
+<section class="section section-registro white black-text">
+    <div class="container">
+        <h4 class="center">Registre-se para participar dos leilões!</h4>
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card-panel white-text brown darken-3">
+                    <p class="flow-text">Laoreet ac, aliquam sit amet justo nunc tempor, metus vel placerat suscipit, orci nisl iaculis eros, a tincidunt nisi odio eget lorem nulla condimentum tempor.</p>
+                    <ul>
+                        <li>
+                            <i class="material-icons left medium">shopping_cart</i>
+                            <h6>
+                                Ut fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.
+                            </h6>
+                        </li>
+                        <li>
+                            <i class="material-icons left medium">dashboard</i>
+                            <h6>
+                                Ut fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.
+                            </h6>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <form class="card-panel">
+                    <p>
+                        Ut fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor.
+                    </p>
+                    <div class="input-field">
+                        <input type="email" id="email" />
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="password" id="password" />
+                        <label for="password">Senha</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="confirmPassword" id="confirmPassword" />
+                        <label for="confirmPassword">Confirmação de Senha</label>
+                    </div>
+                    <button class="btn waves-effect waves-light brown darken-3">Registrar</button>
+                </form>
+            </div>
+        </div>
+        <!--div.row-->
+    </div>
+    <!--div.container-->
+</section>
+<!--section-registro-->
