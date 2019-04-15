@@ -13,7 +13,7 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
                 //registrar usuário
                 return RedirectToAction("Agradecimento");
             }
-            return View("~/Views/Home/Index.cshtml", model);
+            return BadRequest();
         }
 
         [HttpGet]

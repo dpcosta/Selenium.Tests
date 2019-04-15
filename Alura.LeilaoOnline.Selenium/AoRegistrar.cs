@@ -42,5 +42,32 @@ namespace Alura.LeilaoOnline.Selenium
             //assert
             Assert.Contains("Obrigado", driver.PageSource);
         }
+
+        [Theory]
+        [InlineData("fulano@example.org", "123", "456")]
+        [InlineData("fulano", "123", "123")]
+        [InlineData("", "123", "123")]
+        public void DadasInfoInvalidasDeveContinuarNaHome(
+            string email, 
+            string senha, 
+            string confirmacaoSenha)
+        {
+            //arrange - info válidas
+            driver.Navigate().GoToUrl(TestHelper.UrlDoSistema);
+            IWebElement campoEmail = driver.FindElement(By.Id("Email"));
+            IWebElement campoSenha = driver.FindElement(By.Id("Password"));
+            IWebElement campoConfirmacaoSenha = driver.FindElement(By.Id("ConfirmPassword"));
+            IWebElement botaoRegistro = driver.FindElement(By.Id("btnRegistro"));
+
+            campoEmail.SendKeys(email);
+            campoSenha.SendKeys(senha);
+            campoConfirmacaoSenha.SendKeys(confirmacaoSenha);
+
+            //act - ao registrar: clique do botão
+            botaoRegistro.Click();
+
+            //assert
+            Assert.Contains("section-registro", driver.PageSource);
+        }
     }
 }
