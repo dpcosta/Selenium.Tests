@@ -12,6 +12,7 @@
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="~/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="~/css/style.css" rel="stylesheet" />
     <style>
         body {
             height: 100vh;
@@ -25,33 +26,33 @@
     </style>
 </head>
 <body class="grey lighten-4">
-    <form class="card" asp-action="Login" asp-controller="Autenticacao">
-        <div class="card-content">
-            <span class="card-title">
-                <i class="material-icons left">person</i>
-                Login
-            </span>
-            <div class="input-field col s6">
-                <input asp-for="Login" class="validate" />
-                <label asp-for="Login"></label>
-            </div>
-            <!--div.input-field login-->
-            <div class="input-field col s6">
-                <input asp-for="Password" class="validate" />
-                <label asp-for="Password"></label>
-            </div>
-            <!--div.input-field password-->
+
+    <form class="card-panel" asp-action="Login" asp-controller="Autenticacao">
+        <h6 class="brand-logo center-align"><span>Leilões</span><span> online</span></h6>
+        <h5>
+            <i class="material-icons left">person</i>
+            Login
+        </h5>
+        <div class="input-field">
+            <input asp-for="Login" class="validate" />
+            <label asp-for="Login"></label>
+            <span class="helper-text msg-erro" asp-validation-for="Login"></span>
         </div>
-        <!--div.card-content-->
-        <div class="card-action">
-            <button class="btn waves-effect waves-light z-depth-0">Login</button>
+        <!--div.input-field login-->
+        <div class="input-field">
+            <input asp-for="Password" class="validate" />
+            <label asp-for="Password"></label>
+            <span class="helper-text msg-erro" asp-validation-for="Password"></span>
         </div>
-        <!--div.card-action-->
+        <!--div.input-field password-->
+        <button class="btn waves-effect waves-light z-depth-0">Login</button>
+        <p>Ainda não possui cadastro? <a href="#!">Registre-se</a>!</p>
     </form>
-    <!--div.card-->
 
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.js"></script>
     <script src="~/js/materialize.js"></script>
     <script src="~/js/init.js"></script>
 </body>

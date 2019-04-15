@@ -1,9 +1,11 @@
 ﻿@model Alura.LeilaoOnline.WebApp.Models.RegistroViewModel
 
 <form class="card-panel" asp-action="Registro" asp-controller="Usuarios">
-    <p>
-        Ut fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor.
-    </p>
+    <div class="input-field">
+        <input asp-for="Nome" />
+        <label asp-for="Nome"></label>
+        <span class="helper-text msg-erro" asp-validation-for="Nome"></span>
+    </div>
     <div class="input-field">
         <input asp-for="Email" />
         <label asp-for="Email"></label>

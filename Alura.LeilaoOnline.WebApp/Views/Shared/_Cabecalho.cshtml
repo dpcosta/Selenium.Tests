@@ -1,4 +1,8 @@
-﻿<div class="navbar-fixed">
+﻿@{ 
+    var usuarioLogado = Context.Session.Get<Usuario>("usuarioLogado");
+}
+
+<div class="navbar-fixed">
     <nav class="white z-depth-2" role="navigation">
         <div class="nav-wrapper">
             <div class="container">
@@ -10,21 +14,24 @@
                 <!-- Dropdown Structure -->
                 <ul id="dropdown1" class="dropdown-content">
                     <li><a href="#!">Meu Perfil</a></li>
-                    <li><a href="#!">Opções</a></li>
                     <li class="divider"></li>
-                    <li><a href="#!">Logout</a></li>
+                    <li><a asp-controller="Autenticacao" asp-action="Logout">Logout</a></li>
                 </ul>
                 <ul class="right hide-on-med-and-down">
-                    <li><a asp-controller="Leiloes" asp-action="Index">Leilões</a></li>
-                    <li><a href="#">Minhas Ofertas</a></li>
-                    <li><a asp-controller="Autenticacao" asp-action="Login">Login</a></li>
-                    <li><a href="#">Usuários</a></li>
-                    <li class="center-align">
-                        <a id="meu-perfil" class="dropdown-trigger" href="#" data-target="dropdown1">
-                            <i class="material-icons large">account_circle</i>
-                            <i class="material-icons">arrow_drop_down</i>
-                        </a>
-                    </li>
+                    @if (usuarioLogado == null)
+                    {
+                        <li><a asp-controller="Autenticacao" asp-action="Login">Login</a></li>
+                    } else {
+                        <li><a href="#">Minhas Ofertas</a></li>
+                        <li><a asp-controller="Leiloes" asp-action="Index">Leilões</a></li>
+                        <li><a href="#">Usuários</a></li>
+                        <li class="center-align">
+                            <a id="meu-perfil" class="dropdown-trigger" href="#" data-target="dropdown1">
+                                <i class="material-icons large">account_circle</i>
+                                <i class="material-icons">arrow_drop_down</i>
+                            </a>
+                        </li>
+                    }
                 </ul>
 
                 <ul id="nav-mobile" class="sidenav">

@@ -28,6 +28,8 @@ namespace Alura.LeilaoOnline.WebApp
             });
             services.AddTransient<IModalidadeAvaliacao, MaiorValor>();
             services.AddTransient<IRepositorio<Leilao>, RepositorioBase<Leilao>>();
+            services.AddTransient<IRepositorio<Usuario>, RepositorioBase<Usuario>>();
+            services.AddSession();
             services.AddMvc();
         }
 
@@ -40,6 +42,7 @@ namespace Alura.LeilaoOnline.WebApp
             }
 
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseMvcWithDefaultRoute();
         }

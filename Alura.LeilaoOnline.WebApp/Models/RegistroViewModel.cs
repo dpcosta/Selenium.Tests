@@ -5,6 +5,9 @@ namespace Alura.LeilaoOnline.WebApp.Models
     public class RegistroViewModel
     {
         [Required]
+        public string Nome { get; set; }
+
+        [Required]
         [Display(Name = "Endereço de Email")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }

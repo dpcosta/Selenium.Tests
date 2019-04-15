@@ -8,9 +8,11 @@ using Alura.LeilaoOnline.WebApp.Extensions;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Alura.LeilaoOnline.WebApp.Filtros;
 
 namespace Alura.LeilaoOnline.WebApp.Controllers
 {
+    [AutorizacaoFilterAttribute]
     public class LeiloesController : Controller
     {
         private readonly IRepositorio<Leilao> _repo;

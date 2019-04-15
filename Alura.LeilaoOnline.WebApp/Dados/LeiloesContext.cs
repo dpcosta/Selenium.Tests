@@ -6,6 +6,7 @@ namespace Alura.LeilaoOnline.WebApp.Dados
     public class LeiloesContext : DbContext
     {
         public DbSet<Leilao> Leiloes { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         public LeiloesContext(DbContextOptions<LeiloesContext> dbContextOptions) : 
             base(dbContextOptions) { }
@@ -16,6 +17,8 @@ namespace Alura.LeilaoOnline.WebApp.Dados
 
             modelBuilder.ApplyConfiguration<Leilao>(new LeilaoEFConfig());
             modelBuilder.ApplyConfiguration<Lance>(new LanceEFConfig());
+            modelBuilder.ApplyConfiguration<Interessada>(new InteressadaEFConfig());
+            modelBuilder.ApplyConfiguration<Usuario>(new UsuarioEFConfig());
 
         }
     }
