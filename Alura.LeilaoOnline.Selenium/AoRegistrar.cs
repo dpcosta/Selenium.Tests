@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Alura.LeilaoOnline.Selenium.PageObjects;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
@@ -27,20 +28,15 @@ namespace Alura.LeilaoOnline.Selenium
         {
             //arrange - info válidas
             driver.Navigate().GoToUrl(TestHelper.UrlDoSistema);
-            IWebElement campoEmail = driver.FindElement(By.Id("Email"));
-            IWebElement campoSenha = driver.FindElement(By.Id("Password"));
-            IWebElement campoConfirmacaoSenha = driver.FindElement(By.Id("ConfirmPassword"));
-            IWebElement botaoRegistro = driver.FindElement(By.Id("btnRegistro"));
 
-            campoEmail.SendKeys("fulano@example.org");
-            campoSenha.SendKeys("123");
-            campoConfirmacaoSenha.SendKeys("123");
+            RegistroPageObject registroPO = new RegistroPageObject(driver);
+            registroPO.PreencheFormulario("fulano@example.org", "123", "123");
 
             //act - ao registrar: clique do botão
-            botaoRegistro.Click();
+            registroPO.SubmeterFormulario();
 
             //assert
-            Assert.Contains("Obrigado", driver.PageSource);
+            Assert.True(registroPO.EstaNaPaginaDeAgradecimento);
         }
 
         [Theory]
@@ -54,20 +50,14 @@ namespace Alura.LeilaoOnline.Selenium
         {
             //arrange - info válidas
             driver.Navigate().GoToUrl(TestHelper.UrlDoSistema);
-            IWebElement campoEmail = driver.FindElement(By.Id("Email"));
-            IWebElement campoSenha = driver.FindElement(By.Id("Password"));
-            IWebElement campoConfirmacaoSenha = driver.FindElement(By.Id("ConfirmPassword"));
-            IWebElement botaoRegistro = driver.FindElement(By.Id("btnRegistro"));
-
-            campoEmail.SendKeys(email);
-            campoSenha.SendKeys(senha);
-            campoConfirmacaoSenha.SendKeys(confirmacaoSenha);
+            RegistroPageObject registroPO = new RegistroPageObject(driver);
+            registroPO.PreencheFormulario(email, senha, confirmacaoSenha);
 
             //act - ao registrar: clique do botão
-            botaoRegistro.Click();
+            registroPO.SubmeterFormulario();
 
             //assert
-            Assert.Contains("section-registro", driver.PageSource);
+            Assert.True(registroPO.ContinuaNaPaginaPrincipal);
         }
     }
 }
