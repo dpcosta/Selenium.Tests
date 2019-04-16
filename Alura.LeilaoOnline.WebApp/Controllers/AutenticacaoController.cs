@@ -36,7 +36,7 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
                 {
                     //autenticar
                     HttpContext.Session.Set<Usuario>("usuarioLogado", usuario);
-                    return RedirectToAction("Index", "Leiloes");
+                    return RedirectToAction("Index", "Interessadas");
                 }
                 ModelState.AddModelError("usuarioInvalido", "Usuário não encontrado");
             }

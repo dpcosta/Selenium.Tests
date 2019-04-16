@@ -1,14 +1,12 @@
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Edge;
-using OpenQA.Selenium.Firefox;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 using Xunit;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using Alura.LeilaoOnline.Selenium.Helpers;
 
-namespace Alura.LeilaoOnline.Selenium
+namespace Alura.LeilaoOnline.Selenium.Testes
 {
     [Trait("Tipo", "UI")]
     public class PrimeirosTestesComSelenium

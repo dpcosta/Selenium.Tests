@@ -1,12 +1,10 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using Xunit;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using Alura.LeilaoOnline.Selenium.Helpers;
 
-namespace Alura.LeilaoOnline.Selenium
+namespace Alura.LeilaoOnline.Selenium.Testes
 {
     [Trait("Tipo", "UI")]
     public class HomeNaoLogada : IDisposable

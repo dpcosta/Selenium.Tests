@@ -1,12 +1,11 @@
-﻿using Alura.LeilaoOnline.Selenium.PageObjects;
+﻿using System;
+using Xunit;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
+using Alura.LeilaoOnline.Selenium.PageObjects;
+using Alura.LeilaoOnline.Selenium.Helpers;
 
-namespace Alura.LeilaoOnline.Selenium
+namespace Alura.LeilaoOnline.Selenium.Testes
 {
     [Trait("Tipo", "UI")]
     public class AoRegistrar : IDisposable
