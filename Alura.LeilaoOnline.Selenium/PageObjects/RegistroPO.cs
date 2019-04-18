@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Alura.LeilaoOnline.Selenium.PageObjects
 {
-    public class RegistroPageObject
+    public class RegistroPO
     {
         private readonly IWebDriver driver;
         public IWebElement Nome { get; set; }
@@ -14,7 +14,7 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
         public IWebElement ConfirmacaoSenha { get; }
         public IWebElement BotaoRegistro { get; }
 
-        public RegistroPageObject(IWebDriver webDriver)
+        public RegistroPO(IWebDriver webDriver)
         {
             driver = webDriver;
             Nome = driver.FindElement(By.Id("Nome"));
@@ -32,12 +32,18 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
             ConfirmacaoSenha.SendKeys(confirmacao);
         }
 
-        public void SubmeterFormulario()
+        public AgradecimentoPO SubmeterFormEsperandoSucesso()
         {
             BotaoRegistro.Click();
+            return new AgradecimentoPO(driver);
         }
 
-        public bool EstaNaPaginaDeAgradecimento => driver.PageSource.Contains("Obrigado");
-        public bool ContinuaNaPaginaPrincipal => driver.PageSource.Contains("section-registro");
+        public RegistroPO SubmeterFormularioEsperandoFracasso()
+        {
+            BotaoRegistro.Click();
+            return this;
+        }
+
+        public bool ContinuaNaPaginaDeRegistro => driver.PageSource.Contains("section-registro", StringComparison.InvariantCultureIgnoreCase);
     }
 }

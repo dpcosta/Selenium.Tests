@@ -30,7 +30,7 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         {
             //arrange
             driver.Navigate().GoToUrl(TestHelper.UrlDoSistema);
-            var proximosLeiloesPO = new ProximosLeiloesNaoLogadoPageObject(driver);
+            var proximosLeiloesPO = new ProximosLeiloesPO(driver);
 
             //act
             var detalhePO = proximosLeiloesPO.VaiParaDetalheDoPrimeiroLeilao();
@@ -40,11 +40,28 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         }
 
         [Fact]
+        public void DadoUsuarioLogadoDevePermitirDarLance()
+        {
+            //arrange
+            driver.Navigate().GoToUrl(TestHelper.UrlDoSistema);
+            var loginPO = new LoginPO(driver);
+            var dashbIntPO = loginPO.EfetuaLoginBemSucedido("fulano@example.org", "123");
+            var homePO = dashbIntPO.VaiPraHome();
+            var proximosLeiloesPO = homePO.ProximosLeiloes;
+
+            //act
+            var detalhePO = proximosLeiloesPO.VaiParaDetalheDoPrimeiroLeilao();
+
+            //assert
+            Assert.True(detalhePO.ExisteOpcaoDarLance);
+        }
+
+        [Fact]
         public void DadaInfoLeilaoNaListaDeveExibirMesmasInfoNoDetalhe()
         {
             //arrange
             driver.Navigate().GoToUrl(TestHelper.UrlDoSistema);
-            var proximosLeiloesPO = new ProximosLeiloesNaoLogadoPageObject(driver);
+            var proximosLeiloesPO = new ProximosLeiloesPO(driver);
             var primeiroLeilaoExibido = proximosLeiloesPO.Leiloes.First();
 
             //act

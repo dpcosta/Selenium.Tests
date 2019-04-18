@@ -7,17 +7,25 @@ using OpenQA.Selenium.Interactions;
 
 namespace Alura.LeilaoOnline.Selenium.PageObjects
 {
-    public class DashboardInteressadaPageObject
+    public class DashboardInteressadaPO
     {
         private readonly IWebDriver driver;
         public By LinkMeuPerfil { get; set; }
         public By LinkLogout { get; set; }
+        public By Logo { get; set; }
 
-        public DashboardInteressadaPageObject(IWebDriver webDriver)
+        public DashboardInteressadaPO(IWebDriver webDriver)
         {
             driver = webDriver;
             LinkMeuPerfil = By.Id("meu-perfil");
             LinkLogout = By.LinkText("Logout");
+            Logo = By.ClassName("brand-logo");
+        }
+
+        public HomePO VaiPraHome()
+        {
+            driver.FindElement(Logo).Click();
+            return new HomePO(driver);
         }
 
         public void EfetuaLogout()
@@ -31,5 +39,7 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
             acao.Perform();
             Thread.Sleep(6000);
         }
+
+        public bool EstaNoDashboard => driver.PageSource.Contains("dashboard", StringComparison.InvariantCultureIgnoreCase);
     }
 }

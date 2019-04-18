@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Alura.LeilaoOnline.Selenium.PageObjects
 {
-    public class DetalheLeilaoPageObject
+    public class DetalheLeilaoPO
     {
         private readonly IWebDriver driver;
         private By byLeilao;
@@ -14,7 +14,7 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
         private By tituloLeilao;
         private By descricaoLeilao;
 
-        public DetalheLeilaoPageObject(IWebDriver webDriver)
+        public DetalheLeilaoPO(IWebDriver webDriver)
         {
             driver = webDriver;
             byLeilao = By.ClassName("leilao");
@@ -23,7 +23,8 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
             descricaoLeilao = By.CssSelector(".info .card-content p");
         }
 
-        public bool NaoExibeOpcaoDarLance => !driver.PageSource.Contains("btnDarLance");
+        public bool NaoExibeOpcaoDarLance => !ExisteOpcaoDarLance;
+        public bool ExisteOpcaoDarLance => driver.PageSource.Contains("btnDarLance");
 
         public Leilao Leilao
         {

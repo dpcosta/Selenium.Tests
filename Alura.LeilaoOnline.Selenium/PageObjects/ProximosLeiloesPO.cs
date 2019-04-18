@@ -7,13 +7,13 @@ using Alura.LeilaoOnline.Core;
 
 namespace Alura.LeilaoOnline.Selenium.PageObjects
 {
-    public class ProximosLeiloesNaoLogadoPageObject
+    public class ProximosLeiloesPO
     {
         private readonly IWebDriver driver;
         private By linkDetalheLeilao;
         private By listaDeLeiloes;
 
-        public ProximosLeiloesNaoLogadoPageObject(IWebDriver webDriver)
+        public ProximosLeiloesPO(IWebDriver webDriver)
         {
             driver = webDriver;
             linkDetalheLeilao = By.LinkText("DETALHES");
@@ -40,11 +40,11 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
             }
         }
 
-        public DetalheLeilaoPageObject VaiParaDetalheDoPrimeiroLeilao()
+        public DetalheLeilaoPO VaiParaDetalheDoPrimeiroLeilao()
         {
             //vai pegar o primeiro elemento encontrado!
             driver.FindElement(linkDetalheLeilao).Click();
-            return new DetalheLeilaoPageObject(driver);
+            return new DetalheLeilaoPO(driver);
         }
 
     }

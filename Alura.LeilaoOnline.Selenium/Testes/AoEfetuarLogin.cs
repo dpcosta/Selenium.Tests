@@ -26,15 +26,15 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         public void DadaInfoValidaDeveRedirecionarParaDashboard()
         {
             //arrange
-            var loginPage = new LoginPageObject(driver);
+            var loginPage = new LoginPO(driver);
             //IMPORTANTE: depende de dados de uma base 'inicial'!
             loginPage.PreencheFormLogin("fulano@example.org", "123");
 
             //act
-            loginPage.SubmeteForm();
+            var dashboard = loginPage.SubmeteFormEsperandoSucesso();
 
             //assert
-            Assert.True(loginPage.EstaNoDashboardInteressada);
+            Assert.True(dashboard.EstaNoDashboard);
         }
     }
 }

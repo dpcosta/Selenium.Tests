@@ -28,14 +28,14 @@ namespace Alura.LeilaoOnline.Selenium.Testes
             //arrange - info válidas
             driver.Navigate().GoToUrl(TestHelper.UrlDoSistema);
 
-            RegistroPageObject registroPO = new RegistroPageObject(driver);
+            RegistroPO registroPO = new RegistroPO(driver);
             registroPO.PreencheFormulario("Fulano", "fulano@example.org", "123", "123");
 
             //act - ao registrar: clique do botão
-            registroPO.SubmeterFormulario();
+            var agradecimentoPO = registroPO.SubmeterFormEsperandoSucesso();
 
             //assert
-            Assert.True(registroPO.EstaNaPaginaDeAgradecimento);
+            Assert.True(agradecimentoPO.TextoAgradecimentoExiste);
         }
 
         [Theory]
@@ -51,14 +51,14 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         {
             //arrange - info válidas
             driver.Navigate().GoToUrl(TestHelper.UrlDoSistema);
-            RegistroPageObject registroPO = new RegistroPageObject(driver);
+            RegistroPO registroPO = new RegistroPO(driver);
             registroPO.PreencheFormulario(nome, email, senha, confirmacaoSenha);
 
             //act - ao registrar: clique do botão
-            registroPO.SubmeterFormulario();
+            var resultado = registroPO.SubmeterFormularioEsperandoFracasso();
 
             //assert
-            Assert.True(registroPO.ContinuaNaPaginaPrincipal);
+            Assert.True(resultado.ContinuaNaPaginaDeRegistro);
         }
     }
 }

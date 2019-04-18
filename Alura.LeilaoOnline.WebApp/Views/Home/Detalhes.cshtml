@@ -1,6 +1,7 @@
-﻿@model  Alura.LeilaoOnline.WebApp.Models.LeilaoViewModel
+﻿@model Alura.LeilaoOnline.WebApp.Models.LeilaoViewModel
 @{
     ViewData["Title"] = "Detalhes do Leilão";
+    var usuarioLogado = Context.Session.Get<Usuario>("usuarioLogado");
 }
 
 <div class="container">
@@ -23,7 +24,9 @@
             </div>
             <!--div.card.info-->
         </div>
-        <!--div.col-->
+        <!--div.info-->
+    </div>
+    <div class="row">
         <div class="col s12 m3">
             <div class="card red lighten-1 white-text valor-inicial center">
                 <div class="card-content">
@@ -45,6 +48,14 @@
             <!--div.card-->
         </div>
         <!--div.estado-->
+        @if (usuarioLogado != null)
+        {
+            <div class="col s12 m4">
+                <div class="card-panel center-align">
+                    <a id="btnDarLance" href="#!" class="btn-large waves-effect waves-light brown white-text">Dar Lance!</a>
+                </div>
+            </div>
+        }
     </div>
     <!--div.leilao-->
 </div>

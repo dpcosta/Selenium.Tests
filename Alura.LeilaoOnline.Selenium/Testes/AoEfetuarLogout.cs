@@ -31,14 +31,12 @@ namespace Alura.LeilaoOnline.Selenium.Testes
             //arrange
             driver.Navigate().GoToUrl(TestHelper.UrlDoSistema);
 
-            var loginPage = new LoginPageObject(driver);
+            var loginPage = new LoginPO(driver);
             loginPage.PreencheFormLogin("fulano@example.org", "123");
-            loginPage.SubmeteForm();
-
-            var dash = new DashboardInteressadaPageObject(driver);
+            var dashboard = loginPage.SubmeteFormEsperandoSucesso();
 
             //act
-            dash.EfetuaLogout();
+            dashboard.EfetuaLogout();
 
             //assert
             Assert.Contains("Login", driver.PageSource);
