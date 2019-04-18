@@ -29,7 +29,7 @@ namespace Alura.LeilaoOnline.Selenium.Testes
             driver.Navigate().GoToUrl(TestHelper.UrlDoSistema);
 
             RegistroPageObject registroPO = new RegistroPageObject(driver);
-            registroPO.PreencheFormulario("fulano@example.org", "123", "123");
+            registroPO.PreencheFormulario("Fulano", "fulano@example.org", "123", "123");
 
             //act - ao registrar: clique do botão
             registroPO.SubmeterFormulario();
@@ -39,10 +39,12 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         }
 
         [Theory]
-        [InlineData("fulano@example.org", "123", "456")]
-        [InlineData("fulano", "123", "123")]
-        [InlineData("", "123", "123")]
+        [InlineData("Fulano", "fulano@example.org", "123", "456")]
+        [InlineData("Fulano", "fulano", "123", "123")]
+        [InlineData("Fulano", "", "123", "123")]
+        [InlineData("", "fulano@example.org", "123", "123")]
         public void DadasInfoInvalidasDeveContinuarNaHome(
+            string nome, 
             string email, 
             string senha, 
             string confirmacaoSenha)
@@ -50,7 +52,7 @@ namespace Alura.LeilaoOnline.Selenium.Testes
             //arrange - info válidas
             driver.Navigate().GoToUrl(TestHelper.UrlDoSistema);
             RegistroPageObject registroPO = new RegistroPageObject(driver);
-            registroPO.PreencheFormulario(email, senha, confirmacaoSenha);
+            registroPO.PreencheFormulario(nome, email, senha, confirmacaoSenha);
 
             //act - ao registrar: clique do botão
             registroPO.SubmeterFormulario();

@@ -8,6 +8,7 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
     public class RegistroPageObject
     {
         private readonly IWebDriver driver;
+        public IWebElement Nome { get; set; }
         public IWebElement Email { get; }
         public IWebElement Senha { get; }
         public IWebElement ConfirmacaoSenha { get; }
@@ -16,14 +17,16 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
         public RegistroPageObject(IWebDriver webDriver)
         {
             driver = webDriver;
+            Nome = driver.FindElement(By.Id("Nome"));
             Email = driver.FindElement(By.Id("Email"));
             Senha = driver.FindElement(By.Id("Password"));
             ConfirmacaoSenha = driver.FindElement(By.Id("ConfirmPassword"));
             BotaoRegistro = driver.FindElement(By.Id("btnRegistro"));
         }
 
-        public void PreencheFormulario(string email, string senha, string confirmacao)
+        public void PreencheFormulario(string nome, string email, string senha, string confirmacao)
         {
+            Nome.SendKeys(nome);
             Email.SendKeys(email);
             Senha.SendKeys(senha);
             ConfirmacaoSenha.SendKeys(confirmacao);

@@ -19,7 +19,7 @@
             @foreach (var leilao in Model)
             {
                 <div class="col s12 m4">
-                    <div class="card hoverable">
+                    <div class="card hoverable" data-id="@leilao.Id">
                         <div class="card-image">
                             <img src="@leilao.Imagem" class="responsive-img">
                             <span class="card-title">@leilao.Titulo</span>

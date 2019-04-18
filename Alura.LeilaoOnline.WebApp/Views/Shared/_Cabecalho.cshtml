@@ -15,7 +15,7 @@
                 <ul id="dropdown1" class="dropdown-content">
                     <li><a href="#!">Meu Perfil</a></li>
                     <li class="divider"></li>
-                    <li><a asp-controller="Autenticacao" asp-action="Logout">Logout</a></li>
+                    <li><a id="logout" asp-controller="Autenticacao" asp-action="Logout">Logout</a></li>
                 </ul>
                 <ul class="right hide-on-med-and-down">
                     @if (usuarioLogado == null)
