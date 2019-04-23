@@ -1,0 +1,23 @@
+﻿@model LanceViewModel
+
+<!-- Modal Structure -->
+<form id="modalLance" class="modal" asp-controller="Interessadas" asp-action="OfertaLance">
+    <div class="modal-content">
+        <h4>Oferta de lance</h4>
+        <p>
+            Laoreet ac, aliquam sit amet justo nunc tempor, metus vel placerat suscipit, orci nisl iaculis eros, a tincidunt nisi odio eget lorem nulla condimentum tempor mattis ut vitae feugiat augue cras ut metus a risus iaculis scelerisque eu ac ante fusce non varius purus aenean nec magna felis fusce vestibulum.
+        </p>
+        <input type="hidden" asp-for="LeilaoId" />
+        <input type="hidden" asp-for="UsuarioLogadoId" />
+        <div class="input-field">
+            <input asp-for="Valor" />
+            <label asp-for="Valor"></label>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="reset" class="modal-close waves-effect waves-green btn-flat">Cancelar</button>
+        <button type="submit" class="modal-close waves-effect waves-green btn-flat">
+            Confirmar
+        </button>
+    </div>
+</form>

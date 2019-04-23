@@ -43,11 +43,10 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         public void DadoUsuarioLogadoDevePermitirDarLance()
         {
             //arrange
-            driver.Navigate().GoToUrl(TestHelper.UrlDoSistema);
-            var loginPO = new LoginPO(driver);
-            var dashbIntPO = loginPO.EfetuaLoginBemSucedido("fulano@example.org", "123");
-            var homePO = dashbIntPO.VaiPraHome();
-            var proximosLeiloesPO = homePO.ProximosLeiloes;
+            var proximosLeiloesPO = 
+                LoginPO.EfetuaLoginBemSucedido(driver, "fulano@example.org", "123")
+                .Menu.Logo.VaiPraHome()
+                .ProximosLeiloes;
 
             //act
             var detalhePO = proximosLeiloesPO.VaiParaDetalheDoPrimeiroLeilao();
@@ -60,8 +59,7 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         public void DadaInfoLeilaoNaListaDeveExibirMesmasInfoNoDetalhe()
         {
             //arrange
-            driver.Navigate().GoToUrl(TestHelper.UrlDoSistema);
-            var proximosLeiloesPO = new ProximosLeiloesPO(driver);
+            var proximosLeiloesPO = new HomePO(driver).ProximosLeiloes;
             var primeiroLeilaoExibido = proximosLeiloesPO.Leiloes.First();
 
             //act
@@ -73,5 +71,35 @@ namespace Alura.LeilaoOnline.Selenium.Testes
             Assert.Equal(primeiroLeilaoExibido.Titulo, leilaoDetalhe.Titulo);
             Assert.Equal(primeiroLeilaoExibido.Imagem, leilaoDetalhe.Imagem);
         }
+
+        [Fact]
+        public void DadoUsuarioLogadoEPregaoNaoIniciadoNaoDeveExibirOpcaoDeDarLance()
+        {
+            //arrange: dado que usuário está logado E que leilão cujo Id é 3 possui status LeilaoAntesDoPregao:
+            LoginPO.EfetuaLoginBemSucedido(driver,"fulano@example.org", "123");
+            var idLeilao = 3;
+
+            //act: ao exibir os detalhes do leilão
+            var detalhePO = new DetalheLeilaoPO(driver, idLeilao);
+
+            //assert: então não deve exibir a opção de dar lances
+            Assert.True(detalhePO.NaoExibeOpcaoDarLance);
+        }
+
+        [Fact]
+        public void DadoUsuarioLogadoEPregaoEmAndamentoDeveExibirOpcaoDeDarLance()
+        {
+            //arrange: dado que usuário está logado E que leilão cujo Id é 1 possui status PregaoEmAndamento:
+            LoginPO.EfetuaLoginBemSucedido(driver, "fulano@example.org", "123");
+            var idLeilao = 1;
+
+            //act: ao exibir os detalhes do leilão
+            var detalhePO = new DetalheLeilaoPO(driver, idLeilao);
+
+            //assert: então não deve exibir a opção de dar lances
+            Assert.True(detalhePO.ExisteOpcaoDarLance);
+        }
+
+        
     }
 }

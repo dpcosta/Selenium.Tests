@@ -1,43 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+using Alura.LeilaoOnline.Core;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 
 namespace Alura.LeilaoOnline.Selenium.PageObjects
 {
     public class DashboardInteressadaPO
     {
         private readonly IWebDriver driver;
-        public By LinkMeuPerfil { get; set; }
-        public By LinkLogout { get; set; }
-        public By Logo { get; set; }
+
+        //locators do dashboard
+        private readonly By tabelaMinhasOfertas;
+
+        //propriedades
+        public MenuInteressadaPO Menu { get; }
 
         public DashboardInteressadaPO(IWebDriver webDriver)
         {
             driver = webDriver;
-            LinkMeuPerfil = By.Id("meu-perfil");
-            LinkLogout = By.LinkText("Logout");
-            Logo = By.ClassName("brand-logo");
+            tabelaMinhasOfertas = By.CssSelector(".minhas-ofertas table");
+            Menu = new MenuInteressadaPO(driver);
         }
 
-        public HomePO VaiPraHome()
+        public IEnumerable<Lance> LancesOfertados
         {
-            driver.FindElement(Logo).Click();
-            return new HomePO(driver);
-        }
-
-        public void EfetuaLogout()
-        {
-            Actions builder = new Actions(driver);
-            var acao = builder
-                .MoveToElement(driver.FindElement(LinkMeuPerfil))
-                .MoveToElement(driver.FindElement(LinkLogout))
-                .Click()
-                .Build();
-            acao.Perform();
-            Thread.Sleep(6000);
+            get
+            {
+                var lista = new List<Lance>();
+                var tabelaLances = driver.FindElement(tabelaMinhasOfertas);
+                var linhas = tabelaLances.FindElements(By.TagName("tr"));
+                foreach (var lance in linhas)
+                {
+                    var colunas = lance.FindElements(By.TagName("td"));
+                    var l = new Lance(Convert.ToDouble(colunas[1].Text));
+                    lista.Add(l);
+                }
+                return lista;
+            }
         }
 
         public bool EstaNoDashboard => driver.PageSource.Contains("dashboard", StringComparison.InvariantCultureIgnoreCase);

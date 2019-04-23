@@ -1,5 +1,7 @@
 ﻿using Alura.LeilaoOnline.Core;
+using Alura.LeilaoOnline.Selenium.Helpers;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,10 +11,15 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
     public class DetalheLeilaoPO
     {
         private readonly IWebDriver driver;
-        private By byLeilao;
-        private By imagemLeilao;
-        private By tituloLeilao;
-        private By descricaoLeilao;
+
+        //locators
+        private readonly By byLeilao;
+        private readonly By imagemLeilao;
+        private readonly By tituloLeilao;
+        private readonly By descricaoLeilao;
+        private readonly By campoLance;
+        private readonly By btnDarLance;
+        private readonly By submeteLance;
 
         public DetalheLeilaoPO(IWebDriver webDriver)
         {
@@ -21,10 +28,19 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
             imagemLeilao = By.CssSelector(".imagens .card-image img");
             tituloLeilao = By.CssSelector(".info .card-title");
             descricaoLeilao = By.CssSelector(".info .card-content p");
+            campoLance = By.Id("Valor");
+            btnDarLance = By.Id("btnDarLance");
+            submeteLance = By.Id("modalLance");
+        }
+
+        public DetalheLeilaoPO(IWebDriver webDriver, int idLeilao) : this(webDriver)
+        {
+            driver.Navigate().GoToUrl(TestHelper.UrlDoSistema + $"/Home/Detalhes/{idLeilao}");
         }
 
         public bool NaoExibeOpcaoDarLance => !ExisteOpcaoDarLance;
-        public bool ExisteOpcaoDarLance => driver.PageSource.Contains("btnDarLance");
+        public bool ExisteOpcaoDarLance => driver.ElementIsVisible(btnDarLance);
+        
 
         public Leilao Leilao
         {
@@ -38,6 +54,27 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
                 leilao.Descricao = elementoLeilao.FindElement(descricaoLeilao).Text;
                 return leilao;
             }
+        }
+
+        public DetalheLeilaoPO OfertaLanceBemSucedido(double valor)
+        {
+            //mostrar modal
+            driver.FindElement(btnDarLance).Click();
+
+            //preencher valor do lance
+            driver.FindElement(campoLance).SendKeys(valor.ToString());
+
+            //submeter o lance 
+            driver.FindElement(submeteLance).Submit();
+
+            return this;
+        }
+
+        public DashboardInteressadaPO VaiProDashboard()
+        {
+            //não há ctz se está logado e se está logado como interessada
+            var menuLogado = new MenuInteressadaPO(driver);
+            return menuLogado.VaiProDashboard();
         }
 
     }

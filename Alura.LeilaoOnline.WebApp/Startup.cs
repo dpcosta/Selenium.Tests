@@ -27,7 +27,8 @@ namespace Alura.LeilaoOnline.WebApp
                 options.UseSqlServer(cnxString);
             });
             services.AddTransient<IModalidadeAvaliacao, MaiorValor>();
-            services.AddTransient<IRepositorio<Leilao>, RepositorioBase<Leilao>>();
+            services.AddTransient<IRepositorio<Leilao>, RepositorioLeilao>();
+            services.AddTransient<IRepositorio<Interessada>, RepositorioBase<Interessada>>();
             services.AddTransient<IRepositorio<Usuario>, RepositorioBase<Usuario>>();
             services.AddSession();
             services.AddMvc();

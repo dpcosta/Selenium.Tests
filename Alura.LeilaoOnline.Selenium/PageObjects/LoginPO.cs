@@ -4,46 +4,45 @@ using OpenQA.Selenium;
 
 namespace Alura.LeilaoOnline.Selenium.PageObjects
 {
-    /// <summary>
-    /// Representa a região com o formulário de login a partir do padrão Page Object.
-    /// </summary>
     public class LoginPO
     {
         private readonly IWebDriver driver;
-        public IWebElement Login { get; set; }
-        public IWebElement Senha { get; set; }
-        public IWebElement BotaoSubmit { get; set; }
+
+        //locators
+        private readonly By inputLogin;
+        private readonly By inputSenha;
+        private readonly By botaoSubmit;
 
         public LoginPO(IWebDriver webDriver)
         {
             driver = webDriver;
             driver.Navigate().GoToUrl(TestHelper.UrlDoSistema + "/Autenticacao/Login");
-            Login = driver.FindElement(By.Id("Login"));
-            Senha = driver.FindElement(By.Id("Password"));
-            BotaoSubmit = driver.FindElement(By.Id("btnLogin"));
+            inputLogin = By.Id("Login");
+            inputSenha = By.Id("Password");
+            botaoSubmit = By.Id("btnLogin");
         }
 
-        public void PreencheFormLogin(string login, string senha)
+        public LoginPO PreencheFormLogin(string login, string senha)
         {
-            Login.SendKeys(login);
-            Senha.SendKeys(senha);
+            driver.FindElement(inputLogin).SendKeys(login);
+            driver.FindElement(inputSenha).SendKeys(senha);
+            return this;
         }
 
         public DashboardInteressadaPO SubmeteFormEsperandoSucesso()
         {
-            BotaoSubmit.Submit();
+            driver.FindElement(botaoSubmit).Submit();
             return new DashboardInteressadaPO(driver);
         }
 
         public bool EstaNaPaginaDeLogin => driver.Title.Contains("login", StringComparison.InvariantCultureIgnoreCase);
 
-        public DashboardInteressadaPO EfetuaLoginBemSucedido(string login, string senha)
+        public static DashboardInteressadaPO EfetuaLoginBemSucedido(IWebDriver driver, string login, string senha)
         {
-            PreencheFormLogin(login, senha);
-            return SubmeteFormEsperandoSucesso();
+            return new LoginPO(driver)
+                .PreencheFormLogin(login, senha)
+                .SubmeteFormEsperandoSucesso();
         }
-
-        public bool EstaNoDashboardAdmin => driver.PageSource.Contains("dashboard", StringComparison.InvariantCultureIgnoreCase);
 
     }
 }

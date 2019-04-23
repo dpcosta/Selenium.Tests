@@ -7,33 +7,33 @@ namespace Alura.LeilaoOnline.WebApp.Dados
 {
     public class RepositorioBase<T> : IRepositorio<T> where T:class
     {
-        private readonly LeiloesContext _ctx;
+        protected readonly LeiloesContext _ctx;
 
         public RepositorioBase(LeiloesContext context)
         {
             _ctx = context;
         }
 
-        public IEnumerable<T> Todos => _ctx.Set<T>();
+        public virtual IEnumerable<T> Todos => _ctx.Set<T>();
 
-        public void Alterar(T obj)
+        public virtual void Alterar(T obj)
         {
             _ctx.Update<T>(obj);
             _ctx.SaveChanges();
         }
 
-        public T BuscarPorId(int id)
+        public virtual T BuscarPorId(int id)
         {
             return _ctx.Find<T>(id);
         }
 
-        public void Excluir(T obj)
+        public virtual void Excluir(T obj)
         {
             _ctx.Remove<T>(obj);
             _ctx.SaveChanges();
         }
 
-        public void Incluir(T obj)
+        public virtual void Incluir(T obj)
         {
             _ctx.Add<T>(obj);
             _ctx.SaveChanges();

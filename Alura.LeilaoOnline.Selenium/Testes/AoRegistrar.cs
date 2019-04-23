@@ -26,13 +26,11 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         public void DadasInfoValidasDeveLevarParaPaginaAgradecimento()
         {
             //arrange - info válidas
-            driver.Navigate().GoToUrl(TestHelper.UrlDoSistema);
-
-            RegistroPO registroPO = new RegistroPO(driver);
-            registroPO.PreencheFormulario("Fulano", "fulano@example.org", "123", "123");
+            var home = new HomePO(driver);
+            home.Registro.PreencheFormulario("Fulano", "fulano@example.org", "123", "123");
 
             //act - ao registrar: clique do botão
-            var agradecimentoPO = registroPO.SubmeterFormEsperandoSucesso();
+            var agradecimentoPO = home.Registro.SubmeterFormEsperandoSucesso();
 
             //assert
             Assert.True(agradecimentoPO.TextoAgradecimentoExiste);
@@ -50,12 +48,11 @@ namespace Alura.LeilaoOnline.Selenium.Testes
             string confirmacaoSenha)
         {
             //arrange - info válidas
-            driver.Navigate().GoToUrl(TestHelper.UrlDoSistema);
-            RegistroPO registroPO = new RegistroPO(driver);
-            registroPO.PreencheFormulario(nome, email, senha, confirmacaoSenha);
+            var home = new HomePO(driver);
+            home.Registro.PreencheFormulario(nome, email, senha, confirmacaoSenha);
 
             //act - ao registrar: clique do botão
-            var resultado = registroPO.SubmeterFormularioEsperandoFracasso();
+            var resultado = home.Registro.SubmeterFormularioEsperandoFracasso();
 
             //assert
             Assert.True(resultado.ContinuaNaPaginaDeRegistro);

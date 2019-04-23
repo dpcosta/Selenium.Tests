@@ -10,8 +10,8 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
     public class ProximosLeiloesPO
     {
         private readonly IWebDriver driver;
-        private By linkDetalheLeilao;
-        private By listaDeLeiloes;
+        private readonly By linkDetalheLeilao;
+        private readonly By listaDeLeiloes;
 
         public ProximosLeiloesPO(IWebDriver webDriver)
         {
@@ -26,7 +26,7 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
             {
                 var lista = new List<Leilao>();
                 var elementos = driver.FindElements(listaDeLeiloes);
-                foreach(var elemento in elementos)
+                foreach (var elemento in elementos)
                 {
                     var titulo = elemento.FindElement(By.CssSelector(".card-title")).Text;
                     var imagem = elemento.FindElement(By.CssSelector(".card-image img")).GetAttribute("src");
@@ -45,6 +45,11 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
             //vai pegar o primeiro elemento encontrado!
             driver.FindElement(linkDetalheLeilao).Click();
             return new DetalheLeilaoPO(driver);
+        }
+
+        public DetalheLeilaoPO VaiParaDetalheDoLeilao(int id)
+        {
+            return new DetalheLeilaoPO(driver, id);
         }
 
     }

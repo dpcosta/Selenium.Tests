@@ -36,7 +36,7 @@ namespace Alura.LeilaoOnline.Selenium.Testes
             var dashboard = loginPage.SubmeteFormEsperandoSucesso();
 
             //act
-            dashboard.EfetuaLogout();
+            dashboard.Menu.EfetuaLogout();
 
             //assert
             Assert.Contains("Login", driver.PageSource);

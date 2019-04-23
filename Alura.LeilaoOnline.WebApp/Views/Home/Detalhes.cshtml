@@ -2,6 +2,15 @@
 @{
     ViewData["Title"] = "Detalhes do Leilão";
     var usuarioLogado = Context.Session.Get<Usuario>("usuarioLogado");
+    LanceViewModel lanceModel = null;
+    if (usuarioLogado != null)
+    {
+        lanceModel = new LanceViewModel
+        {
+            LeilaoId = Model.Id,
+            UsuarioLogadoId = usuarioLogado.Id
+        };
+    }
 }
 
 <div class="container">
@@ -48,14 +57,19 @@
             <!--div.card-->
         </div>
         <!--div.estado-->
-        @if (usuarioLogado != null)
+        @if ((usuarioLogado != null) && (Model.Estado == EstadoLeilao.LeilaoEmAndamento))
         {
             <div class="col s12 m4">
                 <div class="card-panel center-align">
-                    <a id="btnDarLance" href="#!" class="btn-large waves-effect waves-light brown white-text">Dar Lance!</a>
+                    <a id="btnDarLance" href="#modalLance" class="btn-large waves-effect waves-light brown white-text modal-trigger">Dar Lance!</a>
                 </div>
             </div>
         }
     </div>
     <!--div.leilao-->
 </div>
+
+@if (lanceModel != null)
+{
+    <partial name="_ModalLance" model="lanceModel" />
+}
