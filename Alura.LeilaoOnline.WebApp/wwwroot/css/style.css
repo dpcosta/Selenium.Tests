@@ -106,3 +106,34 @@ footer.page-footer {
 .section-agradecimento i{
     font-size: 2.8em !important;
 }
+
+.seguir {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 99;
+}
+
+.estado {
+    display: flex;
+}
+
+.estado div {
+    padding: 10px;
+    flex-grow: 1;
+    width: 50%;
+}
+
+.estado h5 {
+    font-weight: 300;
+}
+
+.input-lance {
+    border: 0;
+    border-radius: 5px;
+    padding: 8px;
+    margin: 10px 0;
+    font-size: 1.1em;
+    width: 60%;
+    background-color: rgba(0,0,0,.05);
+}

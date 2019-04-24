@@ -21,7 +21,8 @@ namespace Alura.LeilaoOnline.WebApp.Extensions
                 InicioPregao = leilao.InicioPregao,
                 TerminoPregao = leilao.TerminoPregao,
                 ValorInicial = leilao.ValorInicial,
-                Estado = leilao.Estado
+                Estado = leilao.Estado,
+                Lances = leilao.Lances
             };
         }
 

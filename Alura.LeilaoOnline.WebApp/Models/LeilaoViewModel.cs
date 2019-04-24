@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Alura.LeilaoOnline.Core;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace Alura.LeilaoOnline.WebApp.Models
 {
@@ -36,5 +37,7 @@ namespace Alura.LeilaoOnline.WebApp.Models
         public DateTime TerminoPregao { get; set; }
 
         public EstadoLeilao Estado { get; set; }
+
+        public IEnumerable<Lance> Lances { get; set; }
     }
 }

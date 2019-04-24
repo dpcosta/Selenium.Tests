@@ -5,6 +5,24 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Alura.LeilaoOnline.Core
 {
+    public static class EstadoLeilaoExtensions
+    {
+        public static string ParaTexto(this EstadoLeilao estado)
+        {
+            switch (estado)
+            {
+                case EstadoLeilao.LeilaoAntesDoPregao:
+                    return "Pregão não iniciado";
+                case EstadoLeilao.LeilaoEmAndamento:
+                    return "Pregão em andamento";
+                case EstadoLeilao.LeilaoFinalizado:
+                    return "Pregão encerrado";
+                default:
+                    return "Estado não encontrado";
+            }
+        }
+    }
+
     public enum EstadoLeilao
     {
         LeilaoAntesDoPregao,

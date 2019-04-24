@@ -37,7 +37,22 @@ function readPosterURL(input) {
             readPosterURL(this);
         });
         $('.tooltiped').tooltip();
-        $('input[type=text], textarea').characterCounter();
+        $('input[type=text]:not(.browser-default), textarea').characterCounter();
+
+        $('#btnDarLance').on('click', e => {
+            e.preventDefault();
+
+            //enviar requisição com o lance
+            $.post(
+                '/Interessadas/OfertaLance',
+                $('#formDarLance').serialize(),
+                function () {
+                    console.log('lance ofertado!');
+                    M.toast({ html: 'Lance ofertado com sucesso!' });
+                }
+            );
+
+        });
 
   }); // end of document ready
 })(jQuery); // end of jQuery name space

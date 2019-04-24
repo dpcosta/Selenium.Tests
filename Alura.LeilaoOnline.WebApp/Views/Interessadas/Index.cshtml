@@ -1,4 +1,4 @@
-﻿
+﻿@model DashboardInteressadaViewModel
 @{
     ViewData["Title"] = "Dashboard";
 }
@@ -18,21 +18,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Leilão 1</td>
-                                <td>1.200,00</td>
-                                <td>Atual</td>
-                            </tr>
-                            <tr>
-                                <td>Leilão 2</td>
-                                <td>950,00</td>
-                                <td>Vencedora</td>
-                            </tr>
-                            <tr>
-                                <td>Leilão 3</td>
-                                <td>873,90</td>
-                                <td>Superada</td>
-                            </tr>
+                            @foreach (var lance in Model.MinhasOfertas)
+                            {
+                                <tr>
+                                    <td>@lance.Leilao.Titulo</td>
+                                    <td>@lance.Valor</td>
+                                    <td>Atual</td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>

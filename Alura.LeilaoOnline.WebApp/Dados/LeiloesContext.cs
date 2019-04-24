@@ -6,6 +6,8 @@ namespace Alura.LeilaoOnline.WebApp.Dados
     public class LeiloesContext : DbContext
     {
         public DbSet<Leilao> Leiloes { get; set; }
+        public DbSet<Interessada> Interessada { get; set; }
+        public DbSet<Lance> Lance { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
 
         public LeiloesContext(DbContextOptions<LeiloesContext> dbContextOptions) : 

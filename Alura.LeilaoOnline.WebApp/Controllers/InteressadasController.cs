@@ -7,6 +7,7 @@ using Alura.LeilaoOnline.WebApp.Filtros;
 using Alura.LeilaoOnline.WebApp.Models;
 using Alura.LeilaoOnline.Core;
 using Alura.LeilaoOnline.WebApp.Dados;
+using Alura.LeilaoOnline.WebApp.Extensions;
 
 namespace Alura.LeilaoOnline.WebApp.Controllers
 {
@@ -27,7 +28,13 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var usuarioLogado = this.HttpContext.Session.Get<Usuario>("usuarioLogado");
+            var model = new DashboardInteressadaViewModel
+            {
+                MinhasOfertas = _repoInteressada.BuscarPorId(usuarioLogado.Id).Lances,
+                //LeiloesFavoritos = _repoInteressada
+            };
+            return View(model);
         }
 
         [HttpPost]
@@ -39,7 +46,7 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
                 Interessada interessada = _repoInteressada.BuscarPorId(model.UsuarioLogadoId);
                 leilao.RecebeLance(interessada, model.Valor);
                 _repoLeilao.Alterar(leilao); //?
-                return RedirectToAction("Index");
+                return Ok();
             }
             return BadRequest();
         }
