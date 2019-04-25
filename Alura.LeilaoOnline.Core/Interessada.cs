@@ -9,6 +9,7 @@ namespace Alura.LeilaoOnline.Core
         [Required]
         public string Nome { get; private set; }
         public IEnumerable<Lance> Lances { get; set; }
+        public IEnumerable<Favorito> Favoritos { get; set; }
 
         public Interessada(string nome)
         {

@@ -9,6 +9,7 @@ namespace Alura.LeilaoOnline.WebApp.Dados
         public DbSet<Interessada> Interessada { get; set; }
         public DbSet<Lance> Lance { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Favorito> Favoritos { get; set; }
 
         public LeiloesContext(DbContextOptions<LeiloesContext> dbContextOptions) : 
             base(dbContextOptions) { }
@@ -21,6 +22,7 @@ namespace Alura.LeilaoOnline.WebApp.Dados
             modelBuilder.ApplyConfiguration<Lance>(new LanceEFConfig());
             modelBuilder.ApplyConfiguration<Interessada>(new InteressadaEFConfig());
             modelBuilder.ApplyConfiguration<Usuario>(new UsuarioEFConfig());
+            modelBuilder.ApplyConfiguration<Favorito>(new FavoritoEFConfig());
 
         }
     }

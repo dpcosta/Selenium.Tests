@@ -29,10 +29,12 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
         public IActionResult Index()
         {
             var usuarioLogado = this.HttpContext.Session.Get<Usuario>("usuarioLogado");
+            var interessada = _repoInteressada
+                .BuscarPorId(usuarioLogado.Interessada.Id);
             var model = new DashboardInteressadaViewModel
             {
-                MinhasOfertas = _repoInteressada.BuscarPorId(usuarioLogado.Id).Lances,
-                //LeiloesFavoritos = _repoInteressada
+                MinhasOfertas = interessada.Lances,
+                LeiloesFavoritos = interessada.Favoritos.Select(f => f.LeilaoFavorito)
             };
             return View(model);
         }
@@ -50,5 +52,41 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
             }
             return BadRequest();
         }
+
+        [HttpPost]
+        public IActionResult SeguirLeilao(FavoritoViewModel model)
+        {
+            var leilao = _repoLeilao.BuscarPorId(model.IdLeilao);
+            if (leilao != null)
+            {
+                var favorito = new Favorito
+                {
+                    IdLeilao = model.IdLeilao,
+                    IdInteressada = model.IdInteressada
+                };
+                leilao.Seguidores.Add(favorito);
+                _repoLeilao.Alterar(leilao);
+                return Ok();
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public IActionResult AbandonarLeilao(FavoritoViewModel model)
+        {
+            var leilao = _repoLeilao.BuscarPorId(model.IdLeilao);
+            if (leilao != null)
+            {
+                var favorito = leilao.Seguidores
+                    .FirstOrDefault(s =>
+                        s.IdLeilao == model.IdLeilao &&
+                        s.IdInteressada == model.IdInteressada);
+                leilao.Seguidores.Remove(favorito);
+                _repoLeilao.Alterar(leilao);
+                return Ok();
+            }
+            return NotFound();
+        }
+
     }
 }

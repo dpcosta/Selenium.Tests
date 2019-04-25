@@ -10,10 +10,14 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
     public class HomeController : Controller
     {
         private readonly IRepositorio<Leilao> _repo;
+        private readonly IRepositorio<Interessada> _repoInt;
 
-        public HomeController(IRepositorio<Leilao> repositorio)
+        public HomeController(
+            IRepositorio<Leilao> repositorio,
+            IRepositorio<Interessada> repoInt)
         {
             _repo = repositorio;
+            _repoInt = repoInt;
         }
 
         [HttpGet]
@@ -23,7 +27,22 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
                 .Where(l => l.Estado == EstadoLeilao.LeilaoAntesDoPregao)
                 .OrderBy(l => l.InicioPregao)
                 .Take(6)
-                .Select(l => l.ToViewModel());
+                .Select(l => l.ToViewModel())
+                .ToList();
+
+            var usuarioLogado = HttpContext.Session.Get<Usuario>("usuarioLogado");
+
+            if (usuarioLogado != null)
+            {
+                var interessada = _repoInt
+                    .BuscarPorId(usuarioLogado.Interessada.Id);
+                proximosLeiloes
+                    .ForEach(l => l.SendoSeguido = interessada
+                        .Favoritos
+                        .Select(f => f.IdLeilao)
+                        .Any(id => id == l.Id));
+            }
+            
             return View(proximosLeiloes);
         }
 

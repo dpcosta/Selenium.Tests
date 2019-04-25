@@ -36,6 +36,8 @@ namespace Alura.LeilaoOnline.WebApp.Models
         [Display(Name = "Término Pregão")]
         public DateTime TerminoPregao { get; set; }
 
+        public bool SendoSeguido { get; set; }
+
         public EstadoLeilao Estado { get; set; }
 
         public IEnumerable<Lance> Lances { get; set; }

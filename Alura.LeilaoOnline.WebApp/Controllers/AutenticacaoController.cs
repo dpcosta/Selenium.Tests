@@ -34,6 +34,7 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
                 var usuario = _repo.Todos.First(u => u.Email == model.Login && u.Senha == model.Password);
                 if (usuario != null)
                 {
+                    usuario = _repo.BuscarPorId(usuario.Id);
                     //autenticar
                     HttpContext.Session.Set<Usuario>("usuarioLogado", usuario);
                     return RedirectToAction("Index", "Interessadas");

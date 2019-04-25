@@ -18,6 +18,8 @@ namespace Alura.LeilaoOnline.WebApp.Dados
         {
             return _ctx.Interessada
                 .Where(i => i.Id == id)
+                .Include(i => i.Favoritos)
+                .ThenInclude(f => f.LeilaoFavorito)
                 .Include(i => i.Lances)
                 .ThenInclude(l => l.Leilao)
                 .FirstOrDefault();

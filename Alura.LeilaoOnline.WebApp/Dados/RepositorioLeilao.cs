@@ -15,6 +15,7 @@ namespace Alura.LeilaoOnline.WebApp.Dados
         {
             return _ctx.Leiloes
                 .Include(l => l.Lances)
+                .Include(l => l.Seguidores)
                 .FirstOrDefault(l => l.Id == id);
         }
     }

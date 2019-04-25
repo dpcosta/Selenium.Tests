@@ -49,6 +49,7 @@ namespace Alura.LeilaoOnline.Core
         public DateTime TerminoPregao { get; set; }
         public EstadoLeilao Estado { get; private set; }
         public IList<Lance> Lances { get; private set; }
+        public IList<Favorito> Seguidores { get; private set; }
         public Lance Ganhador { get; private set; }
 
         //para uso do EF Core

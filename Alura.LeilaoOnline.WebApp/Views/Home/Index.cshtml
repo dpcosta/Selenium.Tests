@@ -22,11 +22,20 @@
                 <div class="col s12 m4">
                     <div class="card hoverable" data-id="@leilao.Id">
                         @if (usuarioLogado != null)
-	                    {
-                        <a class="seguir white-text" href="#!">
-                            <i class="material-icons">star_border</i>
-                        </a>
-	                    }
+                        {
+                            if (leilao.SendoSeguido)
+                            {
+                                <a href="#!" data-idLeilao="@leilao.Id" data-idInteressada="@usuarioLogado.Id" class="abandonar yellow-text text-darken-4">
+                                    <i class="material-icons">star</i>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="#!" data-idLeilao="@leilao.Id" data-idInteressada="@usuarioLogado.Id" class="seguir white-text">
+                                    <i class="material-icons">star_border</i>
+                                </a>
+                            }
+                        }
                         <div class="card-image">
                             <img src="@leilao.Imagem" class="responsive-img">
                             <span class="card-title">@leilao.Titulo</span>

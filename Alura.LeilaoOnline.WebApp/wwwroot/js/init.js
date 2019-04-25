@@ -54,5 +54,48 @@ function readPosterURL(input) {
 
         });
 
+        $('.seguir').on('click', e => {
+            e.preventDefault();
+
+            const link = $(e.target).parent();
+
+            //enviar requisição para seguir o leilão
+            $.post(
+                '/Interessadas/SeguirLeilao',
+                $(link).data(),
+                function () {
+                    console.log('leilão foi seguido!');
+                    M.toast({ html: 'Leilão está sendo seguido!' });
+                    //mudar o ícone e a classe do link
+                    e.target.textContent = 'star';
+                    $(link).removeClass("seguir");
+                    $(link).addClass("abandonar yellow-text text-darken-4");
+                }
+            );
+
+        });
+
+        //ação de deixar de seguir um leilão
+        $('.abandonar').on('click', e => {
+            e.preventDefault();
+
+            const link = $(e.target).parent();
+
+            //enviar requisição para deixar de seguir o leilão
+            $.post(
+                '/Interessadas/AbandonarLeilao',
+                $(link).data(),
+                function () {
+                    console.log('leilão foi abandonado!');
+                    M.toast({ html: 'Você deixou de seguir o leilão!' });
+                    //mudar o ícone e a classe do link
+                    e.target.textContent = 'star_border';
+                    $(link).removeClass("abandonar yellow-text text-darken-4");
+                    $(link).addClass("seguir white-text");
+                }
+            );
+
+        });
+
   }); // end of document ready
 })(jQuery); // end of jQuery name space

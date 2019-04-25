@@ -29,7 +29,7 @@ namespace Alura.LeilaoOnline.WebApp
             services.AddTransient<IModalidadeAvaliacao, MaiorValor>();
             services.AddTransient<IRepositorio<Leilao>, RepositorioLeilao>();
             services.AddTransient<IRepositorio<Interessada>, RepositorioInteressada>();
-            services.AddTransient<IRepositorio<Usuario>, RepositorioBase<Usuario>>();
+            services.AddTransient<IRepositorio<Usuario>, RepositorioUsuario>();
             services.AddSession();
             services.AddMvc();
         }
