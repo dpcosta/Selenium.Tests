@@ -42,7 +42,7 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
                         .Select(f => f.IdLeilao)
                         .Any(id => id == l.Id));
             }
-            
+
             return View(proximosLeiloes);
         }
 
@@ -52,6 +52,17 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
             var leilao = _repo.BuscarPorId(id).ToViewModel();
             if (leilao != null)
             {
+                var usuarioLogado = HttpContext.Session.Get<Usuario>("usuarioLogado");
+
+                if (usuarioLogado != null)
+                {
+                    var interessada = _repoInt
+                        .BuscarPorId(usuarioLogado.Interessada.Id);
+                    leilao.SendoSeguido = interessada
+                        .Favoritos
+                        .Select(f => f.IdLeilao)
+                        .Any(idLeilao => idLeilao == leilao.Id);
+                }
                 return View(leilao);
             }
             return NotFound();

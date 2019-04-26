@@ -19,9 +19,21 @@
         <h5>@leilao.ValorInicial.ToString("C", CultureInfo.CurrentCulture)</h5>
         @if (usuarioLogado != null)
         {
-            <button id="btnSeguirLeilao" class="btn waves-effect waves-light brown darken-3 btn-flat white-text">
-                Acompanhar Leilão
-            </button>
+            if (leilao.SendoSeguido)
+            {
+                <p>Você já está seguindo esse leilão.</p>
+                <button id="btnAbandonarLeilao" class="btn waves-effect waves-light brown darken-3 btn-flat white-text">
+                    Deixar de Seguir
+                </button>
+            }
+            else
+            {
+                <p>Você não está seguindo esse leilão.</p>
+                <button id="btnSeguirLeilao" class="btn waves-effect waves-light brown darken-3 btn-flat white-text">
+                    Quero Seguir!
+                </button>
+            }
+
         }
     </div>
 </div>

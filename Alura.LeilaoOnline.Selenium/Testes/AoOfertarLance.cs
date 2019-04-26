@@ -26,7 +26,7 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         }
 
         [Fact]
-        public void DadaOfertaDeLanceValidaDeveExibirLanceNoDashboard()
+        public void DadaOfertaDeLanceValidaDeveAtualizarLanceAtual()
         {
             //arrange: dados
             //- usuário logado, 
@@ -40,16 +40,11 @@ namespace Alura.LeilaoOnline.Selenium.Testes
                 .Menu.Logo.VaiPraHome()
                 .ProximosLeiloes.VaiParaDetalheDoLeilao(idLeilao);
 
-            //act
+            //act: quando um lance é ofertado com sucesso
             detalheLeilaoPO.OfertaLanceBemSucedido(lanceOfertado);
 
-            //assert
-            double lanceExibido = detalheLeilaoPO
-                .VaiProDashboard()
-                .LancesOfertados
-                .Select(l => l.Valor)
-                .First();
-            Assert.Equal(lanceOfertado, lanceExibido);
+            //assert: então o novo lance deve ser exibido como atual
+            Assert.Equal(lanceOfertado, detalheLeilaoPO.LanceAtual);
 
         }
 

@@ -95,5 +95,7 @@ namespace Alura.LeilaoOnline.Core
             Ganhador = _avaliador.Avalia(this);
             Estado = EstadoLeilao.LeilaoFinalizado;
         }
+
+        public double ValorDoLanceAtual => Lances.Select(l => l.Valor).LastOrDefault();
     }
 }

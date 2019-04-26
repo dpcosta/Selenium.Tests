@@ -4,7 +4,9 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
+using System.Threading;
 
 namespace Alura.LeilaoOnline.Selenium.PageObjects
 {
@@ -30,7 +32,7 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
             descricaoLeilao = By.CssSelector(".info .card-content p");
             campoLance = By.Id("Valor");
             btnDarLance = By.Id("btnDarLance");
-            submeteLance = By.Id("modalLance");
+            submeteLance = By.Id("formDarLance");
         }
 
         public DetalheLeilaoPO(IWebDriver webDriver, int idLeilao) : this(webDriver)
@@ -59,18 +61,31 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
         public DetalheLeilaoPO OfertaLanceBemSucedido(double valor)
         {
             //mostrar modal
-            driver.FindElement(btnDarLance).Click();
+            //driver.FindElement(btnDarLance).Click();
 
             //preencher valor do lance
-            driver.FindElement(campoLance).SendKeys(valor.ToString());
+            var inputLance = driver.FindElement(campoLance);
+            inputLance.Clear(); // <---
+            inputLance.SendKeys(valor.ToString());
 
             //submeter o lance 
-            driver.FindElement(submeteLance).Submit();
+            driver.FindElement(btnDarLance).Click();
 
             return this;
         }
 
-        public DashboardInteressadaPO VaiProDashboard()
+        public double LanceAtual
+        {
+            get
+            {
+                //Thread.Sleep(5000);
+                var locatorValorAtual = By.Id("lanceAtual");
+                var valorAtual = driver.FindElement(locatorValorAtual).Text;
+                return double.Parse(valorAtual, NumberStyles.Currency);
+            }
+        }
+
+        public DashboardInteressadaPO VaiProDashboardConsiderandoLogado()
         {
             //não há ctz se está logado e se está logado como interessada
             var menuLogado = new MenuInteressadaPO(driver);

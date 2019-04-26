@@ -130,7 +130,7 @@ footer.page-footer {
 }
 
 .input-lance {
-    border: 0;
+    border: 1px solid lightgray;
     border-radius: 5px;
     padding: 8px;
     margin: 10px 0;

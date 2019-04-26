@@ -21,7 +21,7 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
         public MenuInteressadaPO(IWebDriver webDriver)
         {
             driver = webDriver;
-            itemMenuDashboard = By.LinkText("Dashboard");
+            itemMenuDashboard = By.PartialLinkText("Dashboard");
             itemMenuMeuPerfil = By.LinkText("Meu Perfil");
             itemMenuLogout = By.LinkText("Logout");
             Logo = new LogoPO(driver);
