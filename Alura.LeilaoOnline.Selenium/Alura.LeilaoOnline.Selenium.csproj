@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Alura.LeilaoOnline.Core\Alura.LeilaoOnline.Core.csproj" />
+    <ProjectReference Include="..\Alura.LeilaoOnline.Dados\Alura.LeilaoOnline.Dados.csproj" />
   </ItemGroup>
 
 </Project>

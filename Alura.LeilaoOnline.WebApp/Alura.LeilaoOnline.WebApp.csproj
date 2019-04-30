@@ -6,8 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Dados\Migrations\20190425175234_Favoritos.cs" />
-    <Compile Remove="Dados\Migrations\20190425175234_Favoritos.Designer.cs" />
     <Compile Remove="Migrations\20190411183821_inicial.cs" />
     <Compile Remove="Migrations\20190411183821_inicial.Designer.cs" />
     <Compile Remove="Migrations\20190411184902_Inicial.cs" />
@@ -27,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Alura.LeilaoOnline.Core\Alura.LeilaoOnline.Core.csproj" />
+    <ProjectReference Include="..\Alura.LeilaoOnline.Dados\Alura.LeilaoOnline.Dados.csproj" />
   </ItemGroup>
 
   <ItemGroup>
