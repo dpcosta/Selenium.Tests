@@ -5,7 +5,7 @@ using System;
 
 namespace Alura.LeilaoOnline.Selenium.Fixtures
 {
-    public class WebDriverFixture : IDisposable
+    public sealed class WebDriverFixture : IDisposable
     {
         public IWebDriver Driver { get; private set; }
 
