@@ -4,22 +4,19 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Alura.LeilaoOnline.Selenium.PageObjects;
 using Alura.LeilaoOnline.Selenium.Helpers;
+using Alura.LeilaoOnline.Selenium.Fixtures;
 
 namespace Alura.LeilaoOnline.Selenium.Testes
 {
+    [Collection("Chrome Driver")]
     [Trait("Tipo", "UI")]
-    public class AoRegistrar : IDisposable
+    public class AoRegistrar
     {
-        private readonly IWebDriver driver;
+        private IWebDriver driver;
 
-        public AoRegistrar()
+        public AoRegistrar(WebDriverFixture fixture)
         {
-            driver = new ChromeDriver(TestHelper.PastaDoExecutavel);
-        }
-
-        public void Dispose()
-        {
-            driver.Quit();
+            driver = fixture.Driver;
         }
 
         [Fact]

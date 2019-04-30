@@ -12,7 +12,7 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
 {
     public class DetalheLeilaoPO
     {
-        private readonly IWebDriver driver;
+        private IWebDriver driver;
 
         //locators
         private readonly By byLeilao;
@@ -40,7 +40,7 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
             driver.Navigate().GoToUrl(TestHelper.UrlDoSistema + $"/Home/Detalhes/{idLeilao}");
         }
 
-        public bool NaoExibeOpcaoDarLance => !ExisteOpcaoDarLance;
+        public bool NaoExibeOpcaoDarLance => !driver.ElementIsVisible(btnDarLance, 1);
         public bool ExisteOpcaoDarLance => driver.ElementIsVisible(btnDarLance);
         
 

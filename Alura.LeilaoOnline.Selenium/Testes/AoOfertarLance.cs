@@ -7,22 +7,19 @@ using Xunit;
 using Alura.LeilaoOnline.Selenium.Helpers;
 using Alura.LeilaoOnline.Selenium.PageObjects;
 using System.Linq;
+using Alura.LeilaoOnline.Selenium.Fixtures;
 
 namespace Alura.LeilaoOnline.Selenium.Testes
 {
+    [Collection("Chrome Driver")]
     [Trait("Tipo", "UI")]
-    public class AoOfertarLance : IDisposable
+    public class AoOfertarLance
     {
         private IWebDriver driver;
 
-        public AoOfertarLance()
+        public AoOfertarLance(WebDriverFixture fixture)
         {
-            driver = new ChromeDriver(TestHelper.PastaDoExecutavel);
-        }
-
-        public void Dispose()
-        {
-            driver.Quit();
+            driver = fixture.Driver;
         }
 
         [Fact]

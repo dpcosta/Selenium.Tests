@@ -3,23 +3,20 @@ using Xunit;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Alura.LeilaoOnline.Selenium.Helpers;
+using Alura.LeilaoOnline.Selenium.Fixtures;
 
 namespace Alura.LeilaoOnline.Selenium.Testes
 {
+    [Collection("Chrome Driver")]
     [Trait("Tipo", "UI")]
-    public class HomeNaoLogada : IDisposable
+    public class HomeNaoLogada
     {
 
-        private readonly IWebDriver driver;
+        private IWebDriver driver;
 
-        public HomeNaoLogada()
+        public HomeNaoLogada(WebDriverFixture fixture)
         {
-            driver = new ChromeDriver(TestHelper.PastaDoExecutavel);
-        }
-
-        public void Dispose()
-        {
-            driver.Quit();
+            driver = fixture.Driver;
         }
 
         [Fact]

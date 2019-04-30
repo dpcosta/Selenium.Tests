@@ -43,7 +43,6 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
                 .Click()
                 .Build();
             acao.Perform();
-            //Thread.Sleep(6000);
         }
 
 

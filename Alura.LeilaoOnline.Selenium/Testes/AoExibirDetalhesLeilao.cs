@@ -7,22 +7,19 @@ using Xunit;
 using Alura.LeilaoOnline.Selenium.Helpers;
 using Alura.LeilaoOnline.Selenium.PageObjects;
 using System.Linq;
+using Alura.LeilaoOnline.Selenium.Fixtures;
 
 namespace Alura.LeilaoOnline.Selenium.Testes
 {
+    [Collection("Chrome Driver")]
     [Trait("Tipo", "UI")]
-    public class AoExibirDetalhesLeilao : IDisposable
+    public class AoExibirDetalhesLeilao
     {
         private IWebDriver driver;
 
-        public AoExibirDetalhesLeilao()
+        public AoExibirDetalhesLeilao(WebDriverFixture fixture)
         {
-            driver = new ChromeDriver(TestHelper.PastaDoExecutavel);
-        }
-
-        public void Dispose()
-        {
-            driver.Quit();
+            driver = fixture.Driver;
         }
 
         [Fact]
@@ -37,22 +34,6 @@ namespace Alura.LeilaoOnline.Selenium.Testes
 
             //assert
             Assert.True(detalhePO.NaoExibeOpcaoDarLance);
-        }
-
-        [Fact]
-        public void DadoUsuarioLogadoDevePermitirDarLance()
-        {
-            //arrange
-            var proximosLeiloesPO = 
-                LoginPO.EfetuaLoginBemSucedido(driver, "fulano@example.org", "123")
-                .Menu.Logo.VaiPraHome()
-                .ProximosLeiloes;
-
-            //act
-            var detalhePO = proximosLeiloesPO.VaiParaDetalheDoPrimeiroLeilao();
-
-            //assert
-            Assert.True(detalhePO.ExisteOpcaoDarLance);
         }
 
         [Fact]

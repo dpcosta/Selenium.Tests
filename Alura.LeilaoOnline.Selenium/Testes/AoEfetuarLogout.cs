@@ -6,23 +6,20 @@ using OpenQA.Selenium;
 using Alura.LeilaoOnline.Selenium.PageObjects;
 using Alura.LeilaoOnline.Selenium.Helpers;
 using OpenQA.Selenium.Chrome;
+using Alura.LeilaoOnline.Selenium.Fixtures;
 
 namespace Alura.LeilaoOnline.Selenium.Testes
 {
+    [Collection("Chrome Driver")]
     [Trait("Tipo", "UI")]
-    public class AoEfetuarLogout : IDisposable
+    public class AoEfetuarLogout
     {
-        private readonly IWebDriver driver;
+        private IWebDriver driver;
 
-        public AoEfetuarLogout()
+        public AoEfetuarLogout(WebDriverFixture fixture)
         {
-            driver = new ChromeDriver(TestHelper.PastaDoExecutavel);
+            driver = fixture.Driver;
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-        }
-
-        public void Dispose()
-        {
-            driver.Quit();
         }
 
         [Fact(Skip = "Temporariamente desabilitado")]
